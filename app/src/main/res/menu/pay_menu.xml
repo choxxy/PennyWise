@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_edit"
+        android:title="@string/action_edit"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_pay"
+        android:title="@string/action_pay"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_topup"
+        android:title="@string/action_topup"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_penalty"
+        android:title="@string/action_penalty"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_message"
+        android:title="@string/action_message"
+        app:showAsAction="never" />
+
+</menu>

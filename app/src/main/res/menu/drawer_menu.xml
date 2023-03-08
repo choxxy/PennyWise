@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_view_list_black_24dp"
+        android:title="@string/home" />
+
+    <!--<item-->
+        <!--android:id="@+id/summary"-->
+        <!--android:icon="@drawable/ic_view_list_black_24dp"-->
+        <!--android:title="@string/summary" />-->
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="@string/application">
+
+            <menu>
+                <item
+                    android:id="@+id/action_backup"
+                    android:icon="@drawable/ic_view_list_black_24dp"
+                    android:title="@string/backup" />
+
+                <item
+                    android:id="@+id/action_restore"
+                    android:icon="@drawable/ic_view_list_black_24dp"
+                    android:title="@string/restore" />
+
+                <item
+                    android:id="@+id/settings"
+                    android:icon="@drawable/ic_settings_black_48dp"
+                    android:title="@string/settings" />
+
+            </menu>
+
+        </item>
+
+        <item android:title="@string/about">
+
+            <menu>
+                <item
+                    android:id="@+id/action_share"
+                    android:icon="@drawable/ic_view_list_black_24dp"
+                    android:title="@string/share" />
+
+                <item
+                    android:id="@+id/action_rate"
+                    android:icon="@drawable/ic_view_list_black_24dp"
+                    android:title="@string/rate" />
+
+                <item
+                    android:id="@+id/action_contact_dev"
+                    android:icon="@drawable/ic_view_list_black_24dp"
+                    android:title="@string/contact_dev" />
+
+            </menu>
+
+        </item>
+    </group>
+
+</menu>

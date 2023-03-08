@@ -1,0 +1,289 @@
+ # Crashlytics - plaintext stacktrace downloaded by Joshua Achoka at Tue, 25 Oct 2016 07:02:03 GMT
+# URL: https://fabric.io/garage-projects/android/apps/com.iogarage.ke.pennywise/issues/580cb7d70aeb16625bdbf6d9/sessions/580cb90d00690001113401e1a2c46078
+# Organization: Garage Projects
+# Platform: android
+# Application: PennyWise Debt Log
+# Version: 3.02 (5)
+# Bundle Identifier: com.iogarage.ke.pennywise
+# Issue #: 19
+# Issue ID: 580cb7d70aeb16625bdbf6d9
+# Session ID: 580cb90d00690001113401e1a2c46078
+# Date: 2016-10-23T13:25:01Z
+# OS Version: 4.2.2
+# Device: HUAWEI Y330-U01
+# RAM Free: 18.4%
+# Disk Free: 10.9%
+
+#0. Crashed: main: 0 0 0x0000000000000000
+       at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4688)
+       at android.app.ActivityThread.access$1300(ActivityThread.java:166)
+       at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1439)
+       at android.os.Handler.dispatchMessage(Handler.java:107)
+       at android.os.Looper.loop(Looper.java:194)
+       at android.app.ActivityThread.main(ActivityThread.java:5455)
+       at java.lang.reflect.Method.invokeNative(Method.java)
+       at java.lang.reflect.Method.invoke(Method.java:525)
+       at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:966)
+       at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:733)
+       at dalvik.system.NativeStart.main(NativeStart.java)
+
+--
+
+Fatal Exception: java.lang.RuntimeException: Unable to create application com.android.tools.fd.runtime.BootstrapApplication: android.database.sqlite.SQLiteException: near "transaction": syntax error (code 1): , while compiling: CREATE TEMPORARY TABLE transaction_TEMP AS SELECT * FROM transaction;
+       at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4688)
+       at android.app.ActivityThread.access$1300(ActivityThread.java:166)
+       at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1439)
+       at android.os.Handler.dispatchMessage(Handler.java:107)
+       at android.os.Looper.loop(Looper.java:194)
+       at android.app.ActivityThread.main(ActivityThread.java:5455)
+       at java.lang.reflect.Method.invokeNative(Method.java)
+       at java.lang.reflect.Method.invoke(Method.java:525)
+       at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:966)
+       at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:733)
+       at dalvik.system.NativeStart.main(NativeStart.java)
+Caused by android.database.sqlite.SQLiteException: near "transaction": syntax error (code 1): , while compiling: CREATE TEMPORARY TABLE transaction_TEMP AS SELECT * FROM transaction;
+       at android.database.sqlite.SQLiteConnection.nativePrepareStatement(SQLiteConnection.java)
+       at android.database.sqlite.SQLiteConnection.acquirePreparedStatement(SQLiteConnection.java:888)
+       at android.database.sqlite.SQLiteConnection.prepare(SQLiteConnection.java:499)
+       at android.database.sqlite.SQLiteSession.prepare(SQLiteSession.java:588)
+       at android.database.sqlite.SQLiteProgram.<init>(SQLiteProgram.java:58)
+       at android.database.sqlite.SQLiteStatement.<init>(SQLiteStatement.java:31)
+       at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1663)
+       at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1594)
+       at com.github.yuweiguocn.library.greendao.MigrationHelper.generateTempTables(MigrationHelper.java:43)
+       at com.github.yuweiguocn.library.greendao.MigrationHelper.migrate(MigrationHelper.java:29)
+       at com.iogarage.ke.pennywise.MySQLiteOpenHelper.onUpgrade(MySQLiteOpenHelper.java:24)
+       at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java:257)
+       at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:164)
+       at com.iogarage.ke.pennywise.PennyApp.initDaoSession(PennyApp.java:78)
+       at com.iogarage.ke.pennywise.PennyApp.onCreate(PennyApp.java:45)
+       at com.android.tools.fd.runtime.BootstrapApplication.onCreate(BootstrapApplication.java:370)
+       at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1000)
+       at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4685)
+       at android.app.ActivityThread.access$1300(ActivityThread.java:166)
+       at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1439)
+       at android.os.Handler.dispatchMessage(Handler.java:107)
+       at android.os.Looper.loop(Looper.java:194)
+       at android.app.ActivityThread.main(ActivityThread.java:5455)
+       at java.lang.reflect.Method.invokeNative(Method.java)
+       at java.lang.reflect.Method.invoke(Method.java:525)
+       at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:966)
+       at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:733)
+       at dalvik.system.NativeStart.main(NativeStart.java)
+
+#0. Crashed: main: 0 0 0x0000000000000000
+       at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4688)
+       at android.app.ActivityThread.access$1300(ActivityThread.java:166)
+       at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1439)
+       at android.os.Handler.dispatchMessage(Handler.java:107)
+       at android.os.Looper.loop(Looper.java:194)
+       at android.app.ActivityThread.main(ActivityThread.java:5455)
+       at java.lang.reflect.Method.invokeNative(Method.java)
+       at java.lang.reflect.Method.invoke(Method.java:525)
+       at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:966)
+       at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:733)
+       at dalvik.system.NativeStart.main(NativeStart.java)
+
+#1. GC
+       at dalvik.system.NativeStart.run(NativeStart.java)
+
+#2. main
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Thread.parkFor(Thread.java:1202)
+       at sun.misc.Unsafe.park(Unsafe.java:323)
+       at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:199)
+       at java.util.concurrent.FutureTask.awaitDone(FutureTask.java:393)
+       at java.util.concurrent.FutureTask.get(FutureTask.java:171)
+       at com.crashlytics.android.core.CrashlyticsExecutorServiceWrapper.executeSyncLoggingException(CrashlyticsExecutorServiceWrapper.java:44)
+       at com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler.uncaughtException(CrashlyticsUncaughtExceptionHandler.java:244)
+       at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:693)
+       at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:690)
+       at dalvik.system.NativeStart.main(NativeStart.java)
+
+#3. FinalizerWatchdogDaemon
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Object.wait(Object.java:364)
+       at java.lang.Daemons$FinalizerWatchdogDaemon.waitForObject(Daemons.java:234)
+       at java.lang.Daemons$FinalizerWatchdogDaemon.run(Daemons.java:211)
+       at java.lang.Thread.run(Thread.java:838)
+
+#4. Binder_1
+       at dalvik.system.NativeStart.run(NativeStart.java)
+
+#5. Answers Events Handler1
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Thread.parkFor(Thread.java:1202)
+       at sun.misc.Unsafe.park(Unsafe.java:323)
+       at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:199)
+       at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2058)
+       at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1063)
+       at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:780)
+       at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1013)
+       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1073)
+       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+       at io.fabric.sdk.android.services.common.ExecutorUtils$1$1.onRun(ExecutorUtils.java:75)
+       at io.fabric.sdk.android.services.common.BackgroundPriorityRunnable.run(BackgroundPriorityRunnable.java:30)
+       at java.lang.Thread.run(Thread.java:838)
+
+#6. JDWP
+       at dalvik.system.NativeStart.run(NativeStart.java)
+
+#7. Binder_2
+       at dalvik.system.NativeStart.run(NativeStart.java)
+
+#8. Binder_3
+       at dalvik.system.NativeStart.run(NativeStart.java)
+
+#9. Signal Catcher
+       at dalvik.system.NativeStart.run(NativeStart.java)
+
+#10. pool-4-thread-1
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Thread.parkFor(Thread.java:1202)
+       at sun.misc.Unsafe.park(Unsafe.java:323)
+       at java.util.concurrent.locks.LockSupport.park(LockSupport.java:159)
+       at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2019)
+       at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:413)
+       at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1013)
+       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1073)
+       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+       at java.lang.Thread.run(Thread.java:838)
+
+#11. ReferenceQueueDaemon
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Object.wait(Object.java:364)
+       at java.lang.Daemons$ReferenceQueueDaemon.run(Daemons.java:135)
+       at java.lang.Thread.run(Thread.java:838)
+
+#12. FinalizerDaemon
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Object.wait(Object.java:401)
+       at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:102)
+       at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:73)
+       at java.lang.Daemons$FinalizerDaemon.run(Daemons.java:175)
+       at java.lang.Thread.run(Thread.java:838)
+
+#13. Queue
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Thread.parkFor(Thread.java:1202)
+       at sun.misc.Unsafe.park(Unsafe.java:323)
+       at java.util.concurrent.locks.LockSupport.park(LockSupport.java:159)
+       at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2019)
+       at java.util.concurrent.PriorityBlockingQueue.take(PriorityBlockingQueue.java:505)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.performOperation(DependencyPriorityBlockingQueue.java:197)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.get(DependencyPriorityBlockingQueue.java:236)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.take(DependencyPriorityBlockingQueue.java:65)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.take(DependencyPriorityBlockingQueue.java:46)
+       at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1013)
+       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1073)
+       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+       at java.lang.Thread.run(Thread.java:838)
+
+#14. Queue
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Thread.parkFor(Thread.java:1202)
+       at sun.misc.Unsafe.park(Unsafe.java:323)
+       at java.util.concurrent.locks.LockSupport.park(LockSupport.java:159)
+       at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2019)
+       at java.util.concurrent.PriorityBlockingQueue.take(PriorityBlockingQueue.java:505)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.performOperation(DependencyPriorityBlockingQueue.java:197)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.get(DependencyPriorityBlockingQueue.java:236)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.take(DependencyPriorityBlockingQueue.java:65)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.take(DependencyPriorityBlockingQueue.java:46)
+       at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1013)
+       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1073)
+       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+       at java.lang.Thread.run(Thread.java:838)
+
+#15. Compiler
+       at dalvik.system.NativeStart.run(NativeStart.java)
+
+#16. Thread-6375
+       at android.net.LocalSocketImpl.accept(LocalSocketImpl.java)
+       at android.net.LocalSocketImpl.accept(LocalSocketImpl.java:279)
+       at android.net.LocalServerSocket.accept(LocalServerSocket.java:94)
+       at com.android.tools.fd.runtime.Server$SocketServerThread.run(Server.java:150)
+       at java.lang.Thread.run(Thread.java:838)
+
+#17. Crashlytics Exception Handler1
+       at dalvik.system.VMStack.getThreadStackTrace(VMStack.java)
+       at java.lang.Thread.getStackTrace(Thread.java:579)
+       at java.lang.Thread.getAllStackTraces(Thread.java:521)
+       at com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler.writeSessionEvent(CrashlyticsUncaughtExceptionHandler.java:1054)
+       at com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler.writeFatal(CrashlyticsUncaughtExceptionHandler.java:807)
+       at com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler.handleUncaughtException(CrashlyticsUncaughtExceptionHandler.java:271)
+       at com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler.access$100(CrashlyticsUncaughtExceptionHandler.java:55)
+       at com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$5.call(CrashlyticsUncaughtExceptionHandler.java:247)
+       at com.crashlytics.android.core.CrashlyticsUncaughtExceptionHandler$5.call(CrashlyticsUncaughtExceptionHandler.java:244)
+       at java.util.concurrent.FutureTask.run(FutureTask.java:234)
+       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1080)
+       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+       at io.fabric.sdk.android.services.common.ExecutorUtils$1$1.onRun(ExecutorUtils.java:75)
+       at io.fabric.sdk.android.services.common.BackgroundPriorityRunnable.run(BackgroundPriorityRunnable.java:30)
+       at java.lang.Thread.run(Thread.java:838)
+
+#18. Queue
+       at java.lang.Object.wait(Object.java)
+       at java.lang.Thread.parkFor(Thread.java:1202)
+       at sun.misc.Unsafe.park(Unsafe.java:323)
+       at java.util.concurrent.locks.LockSupport.park(LockSupport.java:159)
+       at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2019)
+       at java.util.concurrent.PriorityBlockingQueue.take(PriorityBlockingQueue.java:505)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.performOperation(DependencyPriorityBlockingQueue.java:197)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.get(DependencyPriorityBlockingQueue.java:236)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.take(DependencyPriorityBlockingQueue.java:65)
+       at io.fabric.sdk.android.services.concurrency.DependencyPriorityBlockingQueue.take(DependencyPriorityBlockingQueue.java:46)
+       at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1013)
+       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1073)
+       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+       at java.lang.Thread.run(Thread.java:838)
+
+
+
+ Entity transaction = schema.addEntity("Transaction");
+        transaction.setTableName("transaction");
+        transaction.addIdProperty().autoincrement();
+        transaction.addDateProperty("transactiondate");
+        transaction.addStringProperty("personname");
+        transaction.addStringProperty("phonenumber");
+        transaction.addDoubleProperty("amount");
+        transaction.addStringProperty("note");
+        transaction.addDateProperty("paydate");
+        transaction.addBooleanProperty("paid");
+        transaction.addDoubleProperty("balance");
+        transaction.addLongProperty("loannumber");
+        transaction.addIntProperty("type");
+        transaction.addStringProperty("currency");
+        transaction.addIntProperty("status");
+
+        Entity reminder = schema.addEntity("Reminder");
+        reminder.setTableName("reminder");
+        reminder.addIdProperty().autoincrement();
+        reminder.addStringProperty("description");
+        reminder.addDateProperty("reminderdate");
+        reminder.addDateProperty("creationdate");
+        reminder.addBooleanProperty("active");
+        reminder.addBooleanProperty("processed");
+        Property transactionId = reminder.addLongProperty("transactionId").getProperty();
+        reminder.addToOne(transaction, transactionId);
+
+        Entity payment = schema.addEntity("Payment");
+        payment.setTableName("payments");
+        payment.addIdProperty().autoincrement();
+        payment.addDateProperty("paymentdate");
+        transactionId = payment.addLongProperty("transactionId").getProperty();
+        payment.addDoubleProperty("amountpaid");
+
+        ToMany paymentFk = transaction.addToMany(payment, transactionId);
+        paymentFk.setName("payments");
+
+_id,TRANSACTIONDATE,PERSONNAME,PHONENUMBER,AMOUNT,NOTE,PAYDATE,PAID,BALANCE,LOANNUMBER,TYPE,CURRENCY,STATUS
+
+INSERT INTO debts (_id,TRANSACTIONDATE,PERSONNAME,PHONENUMBER,AMOUNT,NOTE,PAYDATE,PAID,BALANCE,LOANNUMBER,TYPE,CURRENCY,STATUS) SELECT _id,TRANSACTIONDATE,PERSONNAME,PHONENUMBER,AMOUNT,NOTE,PAYDATE,PAID,BALANCE,LOANNUMBER,TYPE,CURRENCY,STATUS FROM debts_TEMP;
+
+debts.TRANSACTION_TYPE may not be NULL
+
+INSERT INTO debts (_id,TRANSACTIONDATE,PERSONNAME,PHONENUMBER,AMOUNT,NOTE,PAYDATE,PAID,BALANCE,LOANNUMBER,TYPE,CURRENCY,STATUS) SELECT _id,TRANSACTIONDATE,PERSONNAME,PHONENUMBER,AMOUNT,NOTE,PAYDATE,PAID,BALANCE,LOANNUMBER,TYPE,CURRENCY,STATUS FROM debts_TEMP;
+
+INSERT INTO debts (_id,TRANSACTIONDATE,PERSONNAME,PHONENUMBER,AMOUNT,NOTE,PAYDATE,PAID,BALANCE,LOANNUMBER,TYPE,CURRENCY,STATUS) SELECT _id,TRANSACTIONDATE,PERSONNAME,PHONENUMBER,AMOUNT,NOTE,PAYDATE,PAID,BALANCE,LOANNUMBER,TYPE,CURRENCY,STATUS FROM debts_TEMP;
+
