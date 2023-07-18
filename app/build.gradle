@@ -108,7 +108,7 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.5.2'
 
     // work manager
-    implementation 'androidx.work:work-runtime-ktx:2.8.0'
+    implementation 'androidx.work:work-runtime-ktx:2.8.1'
 
     // kotlin stuff
     implementation libs.core.ktx
