@@ -96,7 +96,7 @@ class PennyMain : BaseActivity(),
         super.onPause()
     }
 
-    fun DeleteTransaction(event: DeleteTransaction?) {
+    fun DeleteTransaction() {
         /* Transaction t = event.transaction;
 
         for (Payment p : t.getPayments()) {

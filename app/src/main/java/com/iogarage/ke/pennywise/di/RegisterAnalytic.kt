@@ -5,12 +5,12 @@ import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
-import com.iogarage.ke.pennywise.util.IPiAnalyticProvider
+import com.iogarage.ke.pennywise.util.AnalyticProvider
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PiGiftRegisterAnalytic @Inject constructor(): IPiAnalyticProvider {
+class RegisterAnalytic @Inject constructor(): AnalyticProvider {
     override fun crashlytics(): FirebaseCrashlytics {
         return Firebase.crashlytics
     }

@@ -3,11 +3,10 @@ package com.iogarage.ke.pennywise
 import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import com.google.firebase.FirebaseApp
 import com.iogarage.ke.pennywise.service.Session
 import com.iogarage.ke.pennywise.util.AppPreferences
 import com.iogarage.ke.pennywise.util.LogTree
-import com.iogarage.ke.pennywise.util.PiTracker
+import com.iogarage.ke.pennywise.util.Tracker
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import java.util.UUID
@@ -32,7 +31,7 @@ class PennyApp : Application(), Configuration.Provider {
     lateinit var session: Session
 
     @Inject
-    lateinit var piTracker: PiTracker
+    lateinit var tracker: Tracker
 
     override fun onCreate() {
         super.onCreate()
@@ -51,7 +50,7 @@ class PennyApp : Application(), Configuration.Provider {
             preference.putString(AppPreferences.UUID, deviceId)
         }
         session.uuid = deviceId
-        piTracker.trackUserProperty(mapOf(AppPreferences.UUID to deviceId))
+        tracker.trackUserProperty(mapOf(AppPreferences.UUID to deviceId))
     }
 
     override fun getWorkManagerConfiguration() =

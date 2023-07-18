@@ -6,10 +6,10 @@ import com.iogarage.ke.pennywise.service.Session
 import timber.log.Timber
 import javax.inject.Inject
 
-class PiTracker @Inject constructor(private val iPiAnalyticProvider: IPiAnalyticProvider, val session: Session) {
+class Tracker @Inject constructor(private val analyticProvider: AnalyticProvider, val session: Session) {
     fun trackUserProperty(properties: Map<String, Any>) {
         for ((key, value) in properties) {
-            iPiAnalyticProvider.analytics().setUserProperty(key, value.toString())
+            analyticProvider.analytics().setUserProperty(key, value.toString())
         }
     }
 
@@ -25,6 +25,6 @@ class PiTracker @Inject constructor(private val iPiAnalyticProvider: IPiAnalytic
             bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, it)
         }
 
-        iPiAnalyticProvider.analytics().logEvent(eventName, bundle)
+        analyticProvider.analytics().logEvent(eventName, bundle)
     }
 }
