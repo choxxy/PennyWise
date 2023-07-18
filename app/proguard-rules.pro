@@ -16,31 +16,4 @@
 #   public *;
 #}
 
--keep class android.support.v7.widget.SearchView { *; }
-
-
 #keep all dao classes
--keep class com.iogarage.ke.pennywise.entities.** { *; }
-
--keep class com.google.android.gms.** { *; }
--dontwarn com.google.android.gms.**
-
-
-
-#EventBus
--keepattributes *Annotation*
--keepclassmembers class ** {
-    @org.greenrobot.eventbus.Subscribe <methods>;
-}
--keep enum org.greenrobot.eventbus.ThreadMode { *; }
-
-
--keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
-public static java.lang.String TABLENAME;
-}
--keep class **$Properties
-
-# If you do not use SQLCipher:
--dontwarn org.greenrobot.greendao.database.**
-# If you do not use Rx:
--dontwarn rx.**

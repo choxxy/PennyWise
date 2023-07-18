@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.iogarage.ke.pennywise.views.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_to_paymentView"
+            app:destination="@id/paymentView" />
+        <action
+            android:id="@+id/action_to_transactionView"
+            app:destination="@id/transactionView" />
+    </fragment>
+    <fragment
+        android:id="@+id/backUpFragment"
+        android:name="com.iogarage.ke.pennywise.views.BackUpFragment"
+        android:label="fragment_back_up"
+        tools:layout="@layout/fragment_back_up" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.iogarage.ke.pennywise.views.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/summaryFragment"
+        android:name="com.iogarage.ke.pennywise.views.summary.SummaryFragment"
+        android:label="SummaryFragment" />
+    <fragment
+        android:id="@+id/paymentView"
+        android:name="com.iogarage.ke.pennywise.views.payments.PaymentView"
+        android:label="PaymentView" >
+        <action
+            android:id="@+id/action_to_transactionView"
+            app:destination="@id/transactionView" />
+        <argument
+            android:name="transactionId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionView"
+        android:name="com.iogarage.ke.pennywise.views.transactions.TransactionView"
+        android:label="TransactionView" >
+        <argument
+            android:name="transactionId"
+            app:argType="long" />
+    </fragment>
+</navigation>

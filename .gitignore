@@ -9,10 +9,9 @@
 /*.iml
 /app/*.iml
 /*.jks
-
+/*.hprof
+*.hprof
 
 /app/release-signing.gradle
 /app/pennywise.jks
 /app/pennywise-app-keystore.properties
-/autodagger/build/
-/compiler/build/

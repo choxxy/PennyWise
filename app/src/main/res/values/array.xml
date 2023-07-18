@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="transaction_type">
-        <item>Borrow/Lend</item>
         <item>Borrowing</item>
         <item>Lending</item>
     </string-array>
-
-    <string-array name="backupentries">
-        <item>Google Drive</item>
-        <item>Dropbox</item>
-     </string-array>
-    <string-array name="backupvalues">
-        <item>1</item>
-        <item>2</item>
-     </string-array>
 
     <string-array name="repeat_array">
         <item>No reminder</item>

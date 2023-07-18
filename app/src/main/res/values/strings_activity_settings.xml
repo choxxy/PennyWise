@@ -5,9 +5,9 @@
     <string name="material_checkbox_summary_on">Passcode enabled</string>
     <string name="material_checkbox_summary_off">Passcode disabled</string>
 
-    <string name="material_backup_preference">Enable/Disable Data Back</string>
-    <string name="material_checkbox_backup_enabled">Backup Authorise</string>
-    <string name="material_checkbox_backup_disabled">Click to authorise backup</string>
+    <string name="material_biometric_preference">Enable/Disable Fingerprint</string>
+    <string name="material_checkbox_fingerprint_on">Fingerprint enabled</string>
+    <string name="material_checkbox_fingerprint_off">Fingerprint disabled</string>
 
     <string name="preference_internal_player">set_internal_player</string>
     <string name="preference_include_video">set_include_video</string>

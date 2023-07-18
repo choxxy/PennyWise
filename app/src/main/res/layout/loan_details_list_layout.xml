@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/loan_details_list_header" />
+    <include
+        android:id="@+id/loan_details_list_header"
+        layout="@layout/loan_details_list_header" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/loansdetailslist"
+        android:id="@+id/loans_details_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/accent"

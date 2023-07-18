@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.app.AlertDialog;
 
 import com.iogarage.ke.pennywise.R;
-import com.iogarage.ke.pennywise.entities.Reminder;
+import com.iogarage.ke.pennywise.domain.entity.Reminder;
 
 
 public class RepeatSelector extends DialogFragment {
@@ -32,7 +32,7 @@ public class RepeatSelector extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.Dialog);
         builder.setItems(repeatArray, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                if (which == Reminder.SPECIFIC_DAYS) {
+              /*  if (which == Reminder.SPECIFIC_DAYS) {
                     DialogFragment daysOfWeekDialog = new DaysOfWeekSelector();
                     daysOfWeekDialog.show(getActivity().getSupportFragmentManager(), "DaysOfWeekSelector");
                 }  else if (which == Reminder.ADVANCED) {
@@ -40,7 +40,7 @@ public class RepeatSelector extends DialogFragment {
                     advancedDialog.show(getActivity().getSupportFragmentManager(), "AdvancedSelector");
                 } else {
                     listener.onRepeatSelection(RepeatSelector.this, which, repeatArray[which]);
-                }
+                }*/
             }
         });
         return builder.create();

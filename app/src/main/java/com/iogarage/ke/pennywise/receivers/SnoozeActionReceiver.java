@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
 
-import com.iogarage.ke.pennywise.SnoozeDialogActivity;
+import com.iogarage.ke.pennywise.views.SnoozeDialogActivity;
 import com.iogarage.ke.pennywise.util.AlarmUtil;
 
 

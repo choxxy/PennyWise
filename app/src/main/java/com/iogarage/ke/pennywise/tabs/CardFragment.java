@@ -10,10 +10,13 @@ import android.view.ViewGroup;
 
 import com.iogarage.ke.pennywise.R;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 /**
  * Created by choxxy on 21/11/2016.
  */
 
+@AndroidEntryPoint
 public class CardFragment extends Fragment {
 
     private CardView mCardView;

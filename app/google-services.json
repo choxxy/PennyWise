@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "19233500190",
+    "firebase_url": "https://lend-fa56c.firebaseio.com",
+    "project_id": "lend-fa56c",
+    "storage_bucket": "lend-fa56c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19233500190:android:9a5f13ae9f68f6e868d20f",
+        "android_client_info": {
+          "package_name": "com.iogarage.ke.pennywise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19233500190-6g2f5cassi6h6j2ghde03lj57bd72sgo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iogarage.ke.pennywise",
+            "certificate_hash": "dd431fac150f6a2d37d9a785c093daf90151c1a7"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChfCE-z0T--W15QCOJhA3L2HLx71Cz1xI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

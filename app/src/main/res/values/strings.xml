@@ -31,6 +31,7 @@
     <string name="prefCurrency">pref_currency</string>
     <string name="set_password">Set Passcode</string>
     <string name="prefTogglePin">pref_toggle_pin</string>
+    <string name="prefToggleBiometric">pref_toggle_biometric</string>
     <string name="prefShowPinEntry">pref_show_pin_entry</string>
     <string name="prefBackUpService">pref_backup_service_provider_entry</string>
 
@@ -54,6 +55,7 @@
     <string name="transaction_adId">ca-app-pub-6424626033677167/8103931336</string>
     <string name="details_adId">ca-app-pub-6424626033677167/6627198135</string>
     <string name="home_adId">ca-app-pub-6424626033677167/2644906935</string>
+    <string name="test_AdId">ca-app-pub-3940256099942544/6300978111</string>
     <string name="deleted">Delete</string>
     <string name="undo">Undo</string>
     <string name="update">Update</string>
@@ -74,8 +76,7 @@
     <string name="contact_dev">Email Developer</string>
     <string name="rate">Rate</string>
     <string name="share">Share</string>
-    <string name="restore">Restore Data</string>
-    <string name="backup">Back Up Data</string>
+    <string name="backup">Backup/Restore Data</string>
     <string name="home">Home</string>
     <string name="summary">Summary</string>
     <string name="payment_date">Date (DD/MM/YYYY)</string>
@@ -106,8 +107,7 @@
     <string name="prompt_confirm_password">Confirm Password</string>
     <string name="theme_settings">Theme Settings</string>
     <string name="security_category">Security</string>
-    <string name="primary_color">Primary Color</string>
-    <string name="accent_color">Accent Color</string>
+
 
     <string name="media">Media</string>
 
@@ -117,7 +117,7 @@
     <string name="color">Color</string>
     <string name="copy_clipboard">Copied to clipboard.</string>
 
-   <!-- THEME -->
+    <!-- THEME -->
     <string name="base_theme">Base Theme</string>
     <string name="dark_amoled">Dark AMOLED</string>
     <string name="white">White</string>
@@ -166,13 +166,82 @@
     <string name="action_about">About</string>
     <string name="action_show_now">Show now</string>
     <string name="action_mark_as_done">Mark as done</string>
-    <string name="select_color">Select Color</string>
     <string name="amount_borrowed">Borrowed</string>
     <string name="amount_lent">Lent</string>
     <string name="submit">Submit</string>
     <string name="application">Application</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
+
+    <string name="new_transaction">New Transaction</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_email">Not a valid email</string>
+    <string name="invalid_password">Password must be 5 or more characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="select_transaction_type">Select transaction Type</string>
+    <string name="borrowing">Borrowing</string>
+    <string name="lending">Lending</string>
+    <string name="due_date">Due Date</string>
+    <string name="name">Name</string>
+
+
+    <string name="desc_google_drive_login">Please perform google authentication to sync your details with Google drive.  Please note, you will be redirected to google api for further authentication and you may see \"UNVERIFIED APP\" dialog due to unavailability of our own server. \n\nWe don\'t steal any of your data, please read privacy policy for more details</string>
+    <string name="desc_google_drive_logout">This system using your google drive account to sync your details. Please use logout option to Logout, if you no longer wanted to sync the data</string>
+    <string name="title_google_drive">Let\'s sync with GoogleDrive</string>
+    <string name="btn_login">Google SignIn</string>
+    <string name="btn_logout">Google SignOut</string>
+    <string name="desc_auth_failed">Authentication is failed, please try again later</string>
+    <string name="acc_sync_google_drive">Sync with Google drive</string>
+    <string name="user_name">User Name</string>
+    <string name="title_sync_summary">Data sync summary</string>
+    <string name="last_sync_time">Last sync time</string>
+    <string name="no_sync_yet">Data synchronization is not happen yet</string>
+    <string name="sync_schedule">Manual synchronization is required all the time!</string>
+    <string name="acc_sync_file">Sync files</string>
+    <string name="drive_sync_notification_title">GiftRegister Google Drive Sync</string>
+    <string name="default_message">Sync is in progress</string>
+    <string name="notification_channel_id">Gift Register</string>
+    <string name="notification_title">Sync data with Google Drive</string>
+    <string name="cancel_download">Cancel</string>
+    <string name="sync_started">Google drive sync started</string>
+    <string name="title_drive_back">Google Drive Backup</string>
+
+
+    <string name="activity_backup_drive_automatic">Automatic backup</string>
+    <string name="activity_backup_drive_desc">Backing up your data to your Google Drive allows you to restore all your readings in case you lose or change devices.</string>
+    <string name="activity_backup_drive_message_restart">Restarting to apply changes...</string>
+    <string name="activity_backup_drive_desc_1">Sync Glucosio\'s database in the cloud with Google Drive.</string>
+    <string name="activity_backup_drive_desc_2">You\'ll be able to restore all your readings if you lost or change phone or sync Glucosio\'s data between your devices.</string>
+    <string name="activity_backup_drive_success">Database successfully backed up to Drive</string>
+    <string name="activity_backup_drive_restore_success">Successfully restored database from Drive</string>
+    <string name="activity_backup_drive_failed">Something went wrong. Please try again :/</string>
+    <string name="activity_backup_drive_last">Last backup:</string>
+    <string name="activity_backup_drive_folder">Backup folder</string>
+    <string name="activity_backup_drive_folder_not_set">Not set</string>
+    <string name="activity_backup_drive_button_backup">Backup now</string>
+    <string name="activity_backup_drive_recent">Recent backups</string>
+    <string name="activity_backup_drive_more">See more Backups</string>
+    <string name="activity_backup_drive_dialog_restore_title">Revert to previous version</string>
+    <string name="activity_backup_drive_dialog_restore_desc">Restoring the backup will overwrite all the existing data with the backup.</string>
+    <string name="activity_backup_drive_dialog_restore_details">Backup details</string>
+    <string name="activity_backup_drive_dialog_restore_button_cancel">Cancel</string>
+    <string name="activity_backup_drive_dialog_restore_button_restore">Restore backup</string>
+    <string name="activity_backup_drive_button_restore">Restore from Drive</string>
+    <string name="activity_backup_drive_error_restore">Unable to find a valid backup to restore from Drive</string>
+    <string name="activity_main_error_play_services">Glucosio needs Play Services to enable Google Drive backup.</string>
+    <string name="activity_main_dialog_csv_title">Export to CSV file</string>
+    <string name="activity_backup_drive_button_open_drive">Manage on Drive</string>
+    <string name="messages_header">Message Header</string>
+    <string name="signature_title">Signature Title</string>
+    <string name="reply_title">Reply Title</string>
+    <string name="sync_header">Sync Header</string>
+    <string name="sync_title">Sync Title</string>
+    <string name="attachment_summary_off">Attachment Summary Off</string>
+    <string name="attachment_summary_on">Attachment Summary On</string>
+    <string name="attachment_title">Attachment Title</string>
+    <string name="features">Features</string>
+    <string name="extras">Extras</string>
+
 
 </resources>
 

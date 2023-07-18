@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <group
+        android:id="@+id/grp_1"
+        android:checkableBehavior="single">
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_view_list_black_24dp"
         android:title="@string/home" />
-
-    <!--<item-->
-        <!--android:id="@+id/summary"-->
-        <!--android:icon="@drawable/ic_view_list_black_24dp"-->
-        <!--android:title="@string/summary" />-->
+    </group>
 
     <group android:checkableBehavior="single">
 
-        <item android:title="@string/application">
+        <item android:title="@string/features">
 
             <menu>
-                <item
-                    android:id="@+id/action_backup"
-                    android:icon="@drawable/ic_view_list_black_24dp"
-                    android:title="@string/backup" />
 
                 <item
-                    android:id="@+id/action_restore"
+                    android:id="@+id/summaryFragment"
                     android:icon="@drawable/ic_view_list_black_24dp"
-                    android:title="@string/restore" />
+                    android:title="@string/summary" />
+
+                <item
+                    android:id="@+id/backUpFragment"
+                    android:icon="@drawable/ic_view_list_black_24dp"
+                    android:title="@string/backup" />
 
                 <item
                     android:id="@+id/settings"
@@ -35,7 +35,7 @@
 
         </item>
 
-        <item android:title="@string/about">
+        <item android:title="@string/extras">
 
             <menu>
                 <item
@@ -47,12 +47,6 @@
                     android:id="@+id/action_rate"
                     android:icon="@drawable/ic_view_list_black_24dp"
                     android:title="@string/rate" />
-
-                <item
-                    android:id="@+id/action_contact_dev"
-                    android:icon="@drawable/ic_view_list_black_24dp"
-                    android:title="@string/contact_dev" />
-
             </menu>
 
         </item>

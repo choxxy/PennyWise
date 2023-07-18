@@ -4,10 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -15,6 +11,11 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -26,11 +27,8 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.iogarage.ke.pennywise.PennyMain;
+import com.iogarage.ke.pennywise.data.dao.DebtDao;
 import com.iogarage.ke.pennywise.R;
-import com.iogarage.ke.pennywise.TransactionView;
-import com.iogarage.ke.pennywise.entities.Debt;
-import com.iogarage.ke.pennywise.entities.DebtDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,12 +37,11 @@ import java.util.List;
 public class LifeLong extends Fragment implements OnChartValueSelectedListener {
 
 
-
-    protected String[] mMonths = new String[] {
+    protected String[] mMonths = new String[]{
             "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
     };
 
-    protected String[] mParties = new String[] {
+    protected String[] mParties = new String[]{
             "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
             "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
             "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
@@ -76,7 +73,6 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
 
         }
 
-        debtDao =  ((PennyMain)getActivity()).getDebtDao();
         mTfRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSans-Regular.ttf");
         mTfLight = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSans-Light.ttf");
     }
@@ -85,7 +81,7 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_life_long, container, false);
+        View view = inflater.inflate(R.layout.fragment_life_long, container, false);
 
         mChart = view.findViewById(R.id.pie_chart);
         list = view.findViewById(R.id.list);
@@ -100,7 +96,7 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
     }
 
 
-    private void setupChart(){
+    private void setupChart() {
 
 
         mChart.setUsePercentValues(true);
@@ -136,10 +132,8 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
 
         setData(4, 100);
 
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+        mChart.animateY(1400, Easing.EaseInOutQuad);
         // mChart.spin(2000, 0, 360);
-
-
         mChart.getLegend().setEnabled(false);
 
         // entry label styling
@@ -154,16 +148,15 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
         double borrowed = 0, loaned = 0;
         List<PieEntry> entries = new ArrayList<>();
 
-        for(Debt d : debtDao.loadAll()){
-            if(d.getType() == TransactionView.LENDING)
+        /*for (Transaction d : debtDao.loadAll()) {
+            if (d.getType() == TransactionView.LENDING)
                 loaned += d.getAmount();
             else
                 borrowed += d.getAmount();
-        }
+        }*/
 
-        entries.add(new PieEntry((float)loaned, ""));
-        entries.add(new PieEntry((float)borrowed, ""));
-
+        entries.add(new PieEntry((float) loaned, ""));
+        entries.add(new PieEntry((float) borrowed, ""));
 
 
         PieDataSet dataSet = new PieDataSet(entries, "");
@@ -188,12 +181,12 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
 
         dataSet.setColors(colors);
 
-        List<Summary> listItems =  new ArrayList<>();
-        listItems.add(new Summary((float)borrowed,"My debt",colors.get(1)));
-        listItems.add(new Summary((float)loaned,"Their debt",colors.get(0)));
+        List<Summary> listItems = new ArrayList<>();
+        listItems.add(new Summary((float) borrowed, "My transaction", colors.get(1)));
+        listItems.add(new Summary((float) loaned, "Their transaction", colors.get(0)));
 
 
-        list.setAdapter(new SummaryAdapter(listItems,getActivity()));
+        list.setAdapter(new SummaryAdapter(listItems, getActivity()));
 
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
@@ -220,7 +213,6 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
         s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
         return s;
     }
-
 
 
     @Override

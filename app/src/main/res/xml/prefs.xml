@@ -21,22 +21,6 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/theme_settings">
-
-        <Preference
-            android:icon="@mipmap/ic_palette"
-            android:key="@string/preference_primary_color"
-            android:summary="The main application color"
-            android:title="@string/primary_color" />
-
-        <Preference
-            android:icon="@mipmap/ic_palette"
-            android:key="@string/preference_accent_color"
-            android:summary="The color which is used to color widgets"
-            android:title="@string/accent_color" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/message_settings">
 
         <EditTextPreference
@@ -54,27 +38,19 @@
             android:summaryOff="@string/material_checkbox_summary_off"
             android:summaryOn="@string/material_checkbox_summary_on"
             android:title="@string/material_checkbox_preference" />
+
+        <SwitchPreference
+            android:disableDependentsState="false"
+            android:key="@string/prefToggleBiometric"
+            android:summaryOff="@string/material_checkbox_fingerprint_off"
+            android:summaryOn="@string/material_checkbox_fingerprint_on"
+            android:title="@string/material_biometric_preference" />
         <Preference
             android:dependency="@string/prefTogglePin"
             android:icon="@drawable/lock"
             android:key="@string/prefShowPinEntry"
             android:summary=""
             android:title="@string/set_password" />
-
-    </PreferenceCategory>
-
-
-    <PreferenceCategory
-        android:summary="Allow PennyWise to backup your application data."
-        android:title="@string/backup_category">
-
-        <ListPreference
-            android:entries="@array/backupentries"
-            android:entryValues="@array/backupvalues"
-            android:icon="@mipmap/ic_backup"
-            android:key="@string/prefBackUpService"
-            android:summary="Last backup done on: dd/mm/yyyy"
-            android:title="Click to choose your backup account." />
 
     </PreferenceCategory>
 

@@ -15,8 +15,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.preference.PreferenceManager;
 
 import com.iogarage.ke.pennywise.R;
-import com.iogarage.ke.pennywise.ViewActivity;
-import com.iogarage.ke.pennywise.entities.Reminder;
+import com.iogarage.ke.pennywise.views.reminder.ReminderActivity;
+import com.iogarage.ke.pennywise.domain.entity.Reminder;
 import com.iogarage.ke.pennywise.receivers.DismissReceiver;
 import com.iogarage.ke.pennywise.receivers.NagReceiver;
 import com.iogarage.ke.pennywise.receivers.SnoozeActionReceiver;
@@ -30,7 +30,7 @@ public class NotificationUtil {
 
     public static void createNotification(Context context, Reminder reminder) {
         // Create intent for notification onClick behaviour
-        Intent viewIntent = new Intent(context, ViewActivity.class);
+        /*Intent viewIntent = new Intent(context, ReminderActivity.class);
         viewIntent.putExtra("NOTIFICATION_ID", reminder.getId());
         viewIntent.putExtra("NOTIFICATION_DISMISS", true);
         PendingIntent pending = PendingIntent.getActivity(context, reminder.getId().intValue(), viewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -54,11 +54,11 @@ public class NotificationUtil {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,channelId)
                 .setSmallIcon(imageResId)
-                //.setColor(Color.parseColor("#CCD050"))
+                .setColor(Color.parseColor("#CCD050"))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(reminder.getContent()))
-                .setContentTitle("Helllo 122342"/*reminder.getTitle()*/)
-                .setContentText(/*reminder.getContent()*/"Helllo ")
-                .setTicker(/*reminder.getTitle()*/"Helllo  5465454")
+                .setContentTitle(reminder.getTitle())
+                .setContentText(reminder.getContent())
+                .setTicker(reminder.getTitle())
                 .setContentIntent(pending);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -103,7 +103,7 @@ public class NotificationUtil {
         }
 
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(reminder.getId().intValue(), builder.build());
+        notificationManager.notify(reminder.getId().intValue(), builder.build());*/
     }
 
     public static void cancelNotification(Context context, int notificationId) {
