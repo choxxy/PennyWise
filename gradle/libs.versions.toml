@@ -25,15 +25,15 @@ gson = "2.10"
 android-gradle = "8.1.0-rc01"
 detekt = "1.22.0"
 detekt-compose-rules = "0.1.5"
-ksp = "1.8.20-1.0.11"
 ktlint = "3.15.0"
+ksp = "1.9.0-1.0.11"
 
 # production libraries
 accompanist = "0.30.1"
 coil = "2.3.0"
 compose-compiler = "1.4.6"
 desugar = "2.0.3"
-hilt = "2.46.1"
+hilt = "2.47"
 kotlin-coroutines = "1.6.4"
 kotlin-serialization = "1.5.0"
 kotlin-serialization-converter = "1.0.0"
@@ -60,7 +60,7 @@ play_services_drive = "17.0.0"
 #Google service api version
 google-api-services-drive = "v3-rev20230610-2.0.0"
 api-client-android = "2.0.0"
-oauth2-http = "1.11.0"
+oauth2-http = "1.19.0"
 preference = "1.2.0"
 
 
