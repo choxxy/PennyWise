@@ -23,7 +23,7 @@ gson = "2.10"
 
 # plugins
 android-gradle = "8.1.0-rc01"
-detekt = "1.22.0"
+detekt = "1.23.0"
 detekt-compose-rules = "0.1.5"
 ksp = "1.8.20-1.0.11"
 ktlint = "3.14.0"
