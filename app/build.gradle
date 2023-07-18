@@ -55,7 +55,7 @@ dependencies {
             implementation 'androidx.preference:preference:1.0.0'
             implementation 'androidx.vectordrawable:vectordrawable:1.0.0'
             implementation 'com.google.android.material:material:1.0.0'
-            implementation 'androidx.multidex:multidex:2.0.0'
+            implementation 'androidx.multidex:multidex:2.0.1'
 
     //firebase
     implementation 'com.google.firebase:firebase-crash:16.0.1'
