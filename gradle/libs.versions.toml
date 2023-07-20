@@ -26,7 +26,7 @@ android-gradle = "8.1.0-rc01"
 detekt = "1.23.0"
 detekt-compose-rules = "0.1.5"
 ktlint = "3.15.0"
-ksp = "1.9.0-1.0.11"
+ksp = "1.9.0-1.0.12"
 
 # production libraries
 accompanist = "0.30.1"
