@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdListener
@@ -22,7 +23,10 @@ import com.iogarage.ke.pennywise.util.toCurrency
 import com.iogarage.ke.pennywise.util.viewBinding
 import com.iogarage.ke.pennywise.views.transactions.TransactionAdapter
 import dagger.hilt.android.AndroidEntryPoint
-
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
@@ -40,11 +44,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     private var transactionView = 0
     private val TIME_TO_AUTOMATICALLY_DISMISS_ITEM = 3000
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -9,7 +9,6 @@ import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.app.AlertDialog;
 
 import com.iogarage.ke.pennywise.R;
-import com.iogarage.ke.pennywise.domain.entity.Reminder;
 
 
 public class RepeatSelector extends DialogFragment {

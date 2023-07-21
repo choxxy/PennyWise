@@ -3,7 +3,7 @@ package com.iogarage.ke.pennywise.di
 import android.content.Context
 import androidx.room.Room
 import com.iogarage.ke.pennywise.data.AppDatabase
-import com.iogarage.ke.pennywise.data.dao.DebtDao
+import com.iogarage.ke.pennywise.data.dao.TransactionDao
 import com.iogarage.ke.pennywise.data.dao.PaymentDao
 import dagger.Module
 import dagger.Provides
@@ -26,7 +26,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDebtDao(database: AppDatabase): DebtDao {
+    fun provideDebtDao(database: AppDatabase): TransactionDao {
         return database.debtDao()
     }
 

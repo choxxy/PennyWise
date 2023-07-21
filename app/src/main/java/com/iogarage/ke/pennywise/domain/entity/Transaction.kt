@@ -19,9 +19,9 @@ data class Transaction(
     var type: TransactionType = TransactionType.LENDING,
     var currency: String = "",
     var status: LoanStatus = LoanStatus.ACTIVE,
-    val reminderTitle: String = "",
-    val reminderContent: String = "",
-    val reminderDate: Long = 0,
+    var reminderTitle: String = "",
+    var reminderContent: String = "",
+    var reminderDate: Long = 0,
     var reminderStatus: ReminderStatus = ReminderStatus.OFF,
 )
 

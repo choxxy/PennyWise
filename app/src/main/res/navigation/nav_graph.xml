@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/homeFragment"
+        android:label="PennyWise"
         android:name="com.iogarage.ke.pennywise.views.home.HomeFragment"
-        android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_to_paymentView"
@@ -19,8 +19,8 @@
     </fragment>
     <fragment
         android:id="@+id/backUpFragment"
-        android:name="com.iogarage.ke.pennywise.views.BackUpFragment"
-        android:label="fragment_back_up"
+        android:name="com.iogarage.ke.pennywise.views.backup.BackUpFragment"
+        android:label="Backup Data"
         tools:layout="@layout/fragment_back_up" />
     <fragment
         android:id="@+id/settingsFragment"
@@ -29,11 +29,11 @@
     <fragment
         android:id="@+id/summaryFragment"
         android:name="com.iogarage.ke.pennywise.views.summary.SummaryFragment"
-        android:label="SummaryFragment" />
+        android:label="Summary" />
     <fragment
         android:id="@+id/paymentView"
         android:name="com.iogarage.ke.pennywise.views.payments.PaymentView"
-        android:label="PaymentView" >
+        android:label="Payment" >
         <action
             android:id="@+id/action_to_transactionView"
             app:destination="@id/transactionView" />
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/transactionView"
         android:name="com.iogarage.ke.pennywise.views.transactions.TransactionView"
-        android:label="TransactionView" >
+        android:label="New Transaction" >
         <argument
             android:name="transactionId"
             app:argType="long" />

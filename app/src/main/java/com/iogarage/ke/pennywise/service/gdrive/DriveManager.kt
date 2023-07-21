@@ -206,7 +206,7 @@ class DriveManager @Inject constructor(
         val isDataSync = preference.getString(AppPreferences.LAST_SYNC_TIME)
 
         // Data was not synced before and some data is existed before the sync
-        if (isDataSync == null && repository.getAllDebtWithPayments().isNotEmpty()) {
+        if (isDataSync.isNullOrEmpty() && repository.getAllDebtWithPayments().isNotEmpty()) {
             Timber.d("Local data exist, so performing merge operation")
             // Have local data, need to merge the items during import
             doDownloadDBAndMerge().collect {
@@ -226,7 +226,7 @@ class DriveManager @Inject constructor(
 
     private fun doDownLoadAndFreshSync() = channelFlow {
         val isDataSync = preference.getString(AppPreferences.LAST_SYNC_TIME)
-        if (isDataSync == null) {
+        if (isDataSync.isNullOrEmpty()) {
             Timber.d("Data was NOT synced before. Perform sync first")
             doDownloadAndSync().collect {
                 Timber.d("Received callback from performRestore: ${it.data}")
@@ -257,7 +257,7 @@ class DriveManager @Inject constructor(
 
     private fun getFolderId(): String? {
         var folderId = preference.getString(AppPreferences.GOOGLE_DRIVE_FOLDER_ID)
-        if (folderId == null) {
+        if (folderId.isNullOrEmpty()) {
             folderId = searchFile(session.appName, mimeType = FOLDER)?.firstOrNull()?.id
             if (folderId == null) {
                 folderId = createFolder()
@@ -377,8 +377,8 @@ class DriveManager @Inject constructor(
         val databaseJson = searchFile(
             fileName = jsonFileName(),
             mimeType = JSON_CONTENT
-        )?.firstOrNull()
-        if (prevJsonFile == null) {
+        )?.lastOrNull()
+        if (prevJsonFile.isNullOrEmpty()) {
             Timber.d("Sync is not performed yet in this device")
             if (databaseJson != null) {
                 Timber.d("Found database file in Google drive, just import as it is: ${databaseJson.name}")

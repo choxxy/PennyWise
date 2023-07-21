@@ -14,8 +14,8 @@ import java.util.*
 @Dao
 interface PaymentDao {
 
-    @Query("SELECT * FROM payments WHERE transactionId=:debtId")
-    fun getPayments(debtId: Long): Flow<List<Payment>>
+    @Query("SELECT * FROM payments WHERE transactionId=:transactionId")
+    fun getPayments(transactionId: Long): Flow<List<Payment>>
 
     @Query("SELECT * FROM payments WHERE paymentId=:paymentId")
     fun getPayment(paymentId: Long): Flow<Payment>

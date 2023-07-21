@@ -3,7 +3,6 @@ package com.iogarage.ke.pennywise.util;
 import android.content.Context;
 
 import com.iogarage.ke.pennywise.R;
-import com.iogarage.ke.pennywise.domain.entity.Reminder;
 
 import java.util.Arrays;
 

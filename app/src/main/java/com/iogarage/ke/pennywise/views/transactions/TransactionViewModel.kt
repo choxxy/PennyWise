@@ -47,7 +47,7 @@ class TransactionViewModel @Inject constructor(
         // transactionType.value?.set(TransactionType.BORROWING, true)
     }
 
-    fun getTransaction(id: Long) {
+    private fun getTransaction(id: Long) {
         viewModelScope.launch {
             val transaction = Transaction(
                 personName = "Peter Njoroge",

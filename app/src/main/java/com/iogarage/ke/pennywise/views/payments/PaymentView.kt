@@ -339,13 +339,13 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
 
     private fun saveData(action: Int, content: String, materialDialog: MaterialDialog) {
         val contentView: TextView =
-            materialDialog.getCustomView().findViewById<TextView>(R.id.content)
+            materialDialog.getCustomView().findViewById(R.id.content)
         val date: TextView =
-            materialDialog.getCustomView().findViewById<TextView>(R.id.payment_date)
+            materialDialog.getCustomView().findViewById(R.id.payment_date)
         val amount: TextView =
-            materialDialog.getCustomView().findViewById<TextView>(R.id.payment_amount)
+            materialDialog.getCustomView().findViewById(R.id.payment_amount)
         val note: TextView =
-            materialDialog.getCustomView().findViewById<TextView>(R.id.payment_note)
+            materialDialog.getCustomView().findViewById(R.id.payment_note)
         val til: TextInputLayout =
             materialDialog.findViewById(R.id.amount_input_layout) as TextInputLayout
         contentView.text = content
@@ -412,11 +412,6 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
         binding.adView.pause()
         super.onPause()
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     companion object {
         private const val PAY = 1
         private const val EDIT = 2

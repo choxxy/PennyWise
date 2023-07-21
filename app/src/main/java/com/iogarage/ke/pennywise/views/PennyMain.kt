@@ -38,15 +38,18 @@ class PennyMain : BaseActivity(),
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         val navHostFragment = supportFragmentManager
-            .findFragmentById(com.iogarage.ke.pennywise.R.id.nav_host_fragment) as NavHostFragment?
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
         navController = navHostFragment!!.navController
-        /* val appBarConfiguration: AppBarConfiguration =
-            AppBarConfiguration.Builder(navController.graph)
-                .setOpenableLayout(binding.drawerLayout)
-                .build()
-        setupWithNavController(
-            binding.toolBar, navController, appBarConfiguration
-        )*/
+
+        // The OnDestinationChangedListener has to be set before calling
+        // NavigationUI.setupActionBarWithNavController(...)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            if (destination.id == R.id.homeFragment) {
+                val today = Date()
+                val fmt: DateFormat = SimpleDateFormat("d MMM, y", Locale.getDefault())
+                controller.currentDestination?.label = fmt.format(today)
+            }
+        }
 
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
 
@@ -56,16 +59,13 @@ class PennyMain : BaseActivity(),
 
         // Find our drawer view
         val version = binding.nvView.getHeaderView(0)
-            .findViewById<TextView>(com.iogarage.ke.pennywise.R.id.text_version)
+            .findViewById<TextView>(R.id.text_version)
         version.text = String.format(
             getString(com.iogarage.ke.pennywise.R.string.version_name),
             Util.getVersionName(this)
         )
 
-        val today = Date()
-        val fmt: DateFormat = SimpleDateFormat("d MMM, y", Locale.getDefault())
-        title = ""
-        binding.toolBar.title = fmt.format(today)
+
     }
 
 

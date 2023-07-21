@@ -2,7 +2,7 @@ package com.iogarage.ke.pennywise.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.iogarage.ke.pennywise.data.dao.DebtDao
+import com.iogarage.ke.pennywise.data.dao.TransactionDao
 import com.iogarage.ke.pennywise.data.dao.PaymentDao
 import com.iogarage.ke.pennywise.domain.entity.Payment
 import com.iogarage.ke.pennywise.domain.entity.Transaction
@@ -12,6 +12,6 @@ import com.iogarage.ke.pennywise.domain.entity.Transaction
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun debtDao(): DebtDao
+    abstract fun debtDao(): TransactionDao
     abstract fun paymentDao(): PaymentDao
 }

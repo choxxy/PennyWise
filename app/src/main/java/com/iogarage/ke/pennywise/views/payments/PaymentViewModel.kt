@@ -72,5 +72,5 @@ sealed class PaymentUiState {
     data class TransactionWithPaymentList(val transaction: TransactionWithPayments) :
         PaymentUiState()
 
-    object Loading : PaymentUiState()
+    data object Loading : PaymentUiState()
 }

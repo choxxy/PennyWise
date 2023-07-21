@@ -13,14 +13,14 @@ import kotlinx.coroutines.flow.Flow
 import com.iogarage.ke.pennywise.domain.entity.Transaction as Trx
 
 @Dao
-interface DebtDao {
+interface TransactionDao {
 
     @Query("SELECT * FROM transactions")
     fun getDebts(): Flow<List<Trx>>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addDebt(transaction: List<Trx>)
+    suspend fun addTransaction(transaction: List<Trx>)
 
     @Delete
     suspend fun deleteDebt(transaction: Trx)
@@ -28,16 +28,16 @@ interface DebtDao {
     @Update
     suspend fun updateDebt(transaction: Trx)
 
-    @Query("SELECT * FROM transactions WHERE transactionId=:debtId")
-    suspend fun getDebt(debtId: Long): Trx
+    @Query("SELECT * FROM transactions WHERE transactionId=:transactionId")
+    suspend fun getTransaction(transactionId: Long): Trx
 
     /**
      * This query will tell Room to query both the [Transaction] and [Payment] tables and handle
      * the object mapping.
      */
     @Transaction
-    @Query("SELECT * FROM transactions WHERE transactionId=:debtId")
-    fun getDebtWithPayments(debtId: Long): Flow<TransactionWithPayments>
+    @Query("SELECT * FROM transactions WHERE transactionId=:transactionId")
+    fun getDebtWithPayments(transactionId: Long): Flow<TransactionWithPayments>
 
     @Transaction
     @Query("SELECT * FROM transactions")

@@ -24,9 +24,8 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.iogarage.ke.pennywise.views.PennyMain
 import com.iogarage.ke.pennywise.R
-import com.iogarage.ke.pennywise.data.dao.DebtDao
+import com.iogarage.ke.pennywise.data.dao.TransactionDao
 import com.iogarage.ke.pennywise.databinding.FragmentSummaryBinding
 import com.iogarage.ke.pennywise.tabs.CardFragmentPagerAdapter
 import com.iogarage.ke.pennywise.tabs.ShadowTransformer
@@ -42,7 +41,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SummaryFragment : Fragment(), OnChartValueSelectedListener {
     protected var mTfRegular: Typeface? = null
     protected var mTfLight: Typeface? = null
-    private var debtDao: DebtDao? = null
+    private var transactionDao: TransactionDao? = null
 
     private val binding by viewBinding(FragmentSummaryBinding::bind)
 
@@ -56,7 +55,7 @@ class SummaryFragment : Fragment(), OnChartValueSelectedListener {
         setHasOptionsMenu(true)
         if (arguments != null) {
         }
-      //  debtDao = (activity as PennyMain?)!!.debtDao
+      //  transactionDao = (activity as PennyMain?)!!.transactionDao
       //  mTfRegular = Typeface.createFromAsset(activity!!.assets, "fonts/OpenSans-Regular.ttf")
       //  mTfLight = Typeface.createFromAsset(activity!!.assets, "fonts/OpenSans-Light.ttf")
     }

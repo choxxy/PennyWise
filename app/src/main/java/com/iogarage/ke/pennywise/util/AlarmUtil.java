@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 
 
-import com.iogarage.ke.pennywise.domain.entity.Reminder;
 import com.iogarage.ke.pennywise.receivers.AlarmReceiver;
 
 import java.util.Calendar;

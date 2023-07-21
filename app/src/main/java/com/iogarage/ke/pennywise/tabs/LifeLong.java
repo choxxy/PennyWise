@@ -27,7 +27,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.iogarage.ke.pennywise.data.dao.DebtDao;
+import com.iogarage.ke.pennywise.data.dao.TransactionDao;
 import com.iogarage.ke.pennywise.R;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
     protected Typeface mTfRegular;
     protected Typeface mTfLight;
     private PieChart mChart;
-    private DebtDao debtDao;
+    private TransactionDao transactionDao;
     private RecyclerView list;
 
     public LifeLong() {
@@ -148,7 +148,7 @@ public class LifeLong extends Fragment implements OnChartValueSelectedListener {
         double borrowed = 0, loaned = 0;
         List<PieEntry> entries = new ArrayList<>();
 
-        /*for (Transaction d : debtDao.loadAll()) {
+        /*for (Transaction d : transactionDao.loadAll()) {
             if (d.getType() == TransactionView.LENDING)
                 loaned += d.getAmount();
             else

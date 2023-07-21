@@ -1,34 +1,16 @@
 package com.iogarage.ke.pennywise.util;
 
 
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Build;
-import androidx.core.app.NotificationCompat;
-import androidx.preference.PreferenceManager;
 
-import com.iogarage.ke.pennywise.R;
-import com.iogarage.ke.pennywise.views.reminder.ReminderActivity;
-import com.iogarage.ke.pennywise.domain.entity.Reminder;
-import com.iogarage.ke.pennywise.receivers.DismissReceiver;
-import com.iogarage.ke.pennywise.receivers.NagReceiver;
-import com.iogarage.ke.pennywise.receivers.SnoozeActionReceiver;
-
-import java.util.Calendar;
 
 public class NotificationUtil {
 
     private static final String channelId = "45";
     private static final String channelName = "PennyWise";
 
-    public static void createNotification(Context context, Reminder reminder) {
+    public static void createNotification(Context context/*, Reminder reminder*/) {
         // Create intent for notification onClick behaviour
         /*Intent viewIntent = new Intent(context, ReminderActivity.class);
         viewIntent.putExtra("NOTIFICATION_ID", reminder.getId());
