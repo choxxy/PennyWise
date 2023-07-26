@@ -61,7 +61,7 @@ play_services_drive = "17.0.0"
 google-api-services-drive = "v3-rev20230610-2.0.0"
 api-client-android = "2.2.0"
 oauth2-http = "1.19.0"
-preference = "1.2.0"
+preference = "1.2.1"
 
 
 [libraries]
