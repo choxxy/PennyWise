@@ -1,13 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dashboard"
         android:layout_width="match_parent"
         android:layout_height="96dp">
@@ -15,88 +15,85 @@
         <View
             android:id="@+id/divider"
             android:layout_width="2dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/icons" />
+            android:layout_height="72dp"
+            android:background="@color/md_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/lentContainer"
+            app:layout_constraintStart_toEndOf="@+id/borrowedContainer"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/borrowedContainer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/divider"
             android:gravity="center"
             android:onClick="onClick"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
                 android:text="@string/amount_borrowed"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/icons" />
 
             <TextView
                 android:id="@+id/borrowedLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="0.00"
+                android:layout_margin="8dp"
+                android:gravity="center"
                 android:textColor="@color/icons"
-                android:textSize="24sp" />
+                android:textSize="18sp"
+                tools:text="0.00" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lentContainer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@id/divider"
             android:gravity="center"
             android:onClick="onClick"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
                 android:text="@string/amount_lent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/icons" />
 
             <TextView
                 android:id="@+id/lentLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="8dp"
-                android:text="0.00"
+                android:layout_margin="8dp"
+                android:gravity="center"
                 android:textColor="@color/icons"
-                android:textSize="24sp" />
+                android:textSize="18sp"
+                tools:text="0.00" />
         </LinearLayout>
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="@string/test_AdId"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:visibility="gone"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/test_AdId" />
+        android:visibility="gone" />
 
 
     <FrameLayout
@@ -127,8 +124,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/layout"
-                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:scrollbars="vertical" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

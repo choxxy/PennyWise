@@ -26,7 +26,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
 import com.iogarage.ke.pennywise.R
 import com.iogarage.ke.pennywise.databinding.FragmentTransactionBinding
 import com.iogarage.ke.pennywise.util.asString
@@ -115,7 +117,7 @@ class TransactionView : Fragment() {
             getContact()
         }
 
-        binding.reminderText.setOnClickListener {
+        binding.reminderDate.setOnClickListener {
             showDatePicker(it.id)
         }
 
@@ -225,6 +227,7 @@ class TransactionView : Fragment() {
     private fun showDatePicker(viewId: Int) {
         val constraintsBuilder =
             CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointForward.now())
                 .setFirstDayOfWeek(Calendar.SUNDAY)
 
         val datePicker =

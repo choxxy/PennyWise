@@ -1,8 +1,0 @@
-# pack-refs with: peeled fully-peeled sorted 
-c58e02481fa6e572901042918bad3981e8a31b01 refs/heads/main
-c3be67c111e4595d8dae1ba3758b7c2bddc0707b refs/heads/migrating_to_hilt
-fd09109db36ca76f4252d4ceff26a72e5a4871d9 refs/heads/with-appwrite-support
-78e88482955932e0e75f2340b07fa0e0ba500c8d refs/heads/with-gdrive-backup
-80530e0849602e5711b18c099688559f7fae0fc6 refs/remotes/origin/main
-a08e36328a1d978720de3738dfbcb3696a41fb96 refs/remotes/origin/renovate/androidx.multidex-multidex-2.x
-e607379e5b771deb24df4e19db2f1cb9b46f14b0 refs/remotes/origin/renovate/com.google.firebase-firebase-core-16.x

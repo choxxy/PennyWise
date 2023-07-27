@@ -1,35 +1,57 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory app:title="@string/currency">
+
+        <com.iogarage.ke.pennywise.views.settings.CurrencyPreference
+            app:defaultValue="EUR"
+            app:key="@string/prefCurrency"
+            app:summary="United States, $"
+            app:title="Select Currency" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/transaction_settings">
+
+
+        <SwitchPreference
+            app:disableDependentsState="false"
+            app:key="@string/prefShowPaid"
+            app:title="@string/hide_paid_transactions" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/message_settings">
 
         <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
-
+            app:defaultValue="@string/msg_template"
+            app:dialogTitle="Message Template"
+            app:key="@string/prefTemplate"
+            app:title="@string/prefMsgtemplate" />
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
+<!--    <PreferenceCategory app:title="@string/security_category">-->
 
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
+<!--        <SwitchPreference-->
+<!--            app:disableDependentsState="false"-->
+<!--            app:key="@string/prefTogglePin"-->
+<!--            app:summaryOff="@string/material_checkbox_summary_off"-->
+<!--            app:summaryOn="@string/material_checkbox_summary_on"-->
+<!--            app:title="@string/material_checkbox_preference" />-->
 
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+<!--        <SwitchPreference-->
+<!--            app:disableDependentsState="false"-->
+<!--            app:key="@string/prefToggleBiometric"-->
+<!--            app:summaryOff="@string/material_checkbox_fingerprint_off"-->
+<!--            app:summaryOn="@string/material_checkbox_fingerprint_on"-->
+<!--            app:title="@string/material_biometric_preference" />-->
+<!--        <Preference-->
+<!--            app:dependency="@string/prefTogglePin"-->
+<!--            app:icon="@drawable/lock"-->
+<!--            app:key="@string/prefShowPinEntry"-->
+<!--            app:summary=""-->
+<!--            app:title="@string/set_password" />-->
 
-    </PreferenceCategory>
+<!--    </PreferenceCategory>-->
 
 </PreferenceScreen>

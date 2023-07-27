@@ -28,7 +28,7 @@
     <string name="no_transactions">No Transactions</string>
     <string name="action_edit">Edit Transaction</string>
     <string name="password_category">Passcode</string>
-    <string name="prefCurrency">pref_currency</string>
+    <string name="prefCurrency">selectedCurrency</string>
     <string name="set_password">Set Passcode</string>
     <string name="prefTogglePin">pref_toggle_pin</string>
     <string name="prefToggleBiometric">pref_toggle_biometric</string>
@@ -60,6 +60,7 @@
     <string name="undo">Undo</string>
     <string name="update">Update</string>
     <string name="amount">Amount Paid</string>
+    <string name="formatted_amount">%s%s</string>
     <string name="update_payment">Update Payment</string>
     <string name="delete">Delete</string>
     <string name="action_penalty">Record Penalty/Fee</string>
@@ -241,6 +242,8 @@
     <string name="attachment_title">Attachment Title</string>
     <string name="features">Features</string>
     <string name="extras">Extras</string>
+    <string name="search">Search</string>
+    <string name="currency">Currency</string>
 
 
 </resources>

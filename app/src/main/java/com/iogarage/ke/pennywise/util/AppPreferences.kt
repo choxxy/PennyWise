@@ -362,5 +362,11 @@ class AppPreferences @Inject constructor(@ApplicationContext context: Context) {
         return editor
     }
 
+    fun getDefaultAlarmHour(): Int =
+        getInt("default_hour", 8)
+
+
+    fun setDefaultAlarmHour(hour: Int) = putInt("default_hour", hour)
+
 
 }

@@ -6,9 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-
-import com.iogarage.ke.pennywise.receivers.AlarmReceiver;
-
 import java.util.Calendar;
 
 public class AlarmUtil {

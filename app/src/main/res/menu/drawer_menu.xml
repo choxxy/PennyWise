@@ -2,8 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
-        android:id="@+id/grp_1"
-        android:checkableBehavior="single">
+        android:id="@+id/grp_1">
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_view_list_black_24dp"
@@ -27,7 +26,7 @@
                     android:title="@string/backup" />
 
                 <item
-                    android:id="@+id/settings"
+                    android:id="@+id/settingsFragment"
                     android:icon="@drawable/ic_settings_black_48dp"
                     android:title="@string/settings" />
 
@@ -35,21 +34,21 @@
 
         </item>
 
-        <item android:title="@string/extras">
+<!--        <item android:title="@string/extras">-->
 
-            <menu>
-                <item
-                    android:id="@+id/action_share"
-                    android:icon="@drawable/ic_view_list_black_24dp"
-                    android:title="@string/share" />
+<!--            <menu>-->
+<!--                <item-->
+<!--                    android:id="@+id/action_share"-->
+<!--                    android:icon="@drawable/ic_view_list_black_24dp"-->
+<!--                    android:title="@string/share" />-->
 
-                <item
-                    android:id="@+id/action_rate"
-                    android:icon="@drawable/ic_view_list_black_24dp"
-                    android:title="@string/rate" />
-            </menu>
+<!--                <item-->
+<!--                    android:id="@+id/action_rate"-->
+<!--                    android:icon="@drawable/ic_view_list_black_24dp"-->
+<!--                    android:title="@string/rate" />-->
+<!--            </menu>-->
 
-        </item>
+<!--        </item>-->
     </group>
 
 </menu>

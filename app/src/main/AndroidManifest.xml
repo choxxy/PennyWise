@@ -13,11 +13,12 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"
+    <uses-permission
+        android:name="android.permission.SCHEDULE_EXACT_ALARM"
         android:maxSdkVersion="32" />
 
     <application
@@ -34,7 +35,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6424626033677167~8691440537"/>
+            android:value="ca-app-pub-6424626033677167~8691440537" />
 
         <activity
             android:name=".views.PennyMain"
@@ -46,12 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".views.transactions.TransactionView"
-            android:exported="false"
-            android:parentActivityName=".views.PennyMain"
-            android:screenOrientation="portrait" />
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -59,33 +54,18 @@
         <activity
             android:name=".views.settings.SettingsActivity"
             android:exported="false"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait" />
+            android:label="@string/title_activity_settings" />
         <activity
-            android:name=".views.reminder.ReminderActivity"
+            android:name=".views.lockscreenalarm.ActivityLockScreenAlarm"
             android:exported="false" />
         <activity
-            android:name=".views.SnoozeDialogActivity"
+            android:name=".views.alarm.SnoozeDialogActivity"
             android:exported="false" />
 
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="8faf2bad629ab0eda6bbbe0152f92b287bdb8279" />
-
-        <receiver android:name=".receivers.AlarmReceiver" />
+        <receiver android:name=".receivers.AlarmBroadcastReceiver" />
         <receiver android:name=".receivers.SnoozeActionReceiver" />
-        <receiver android:name=".receivers.SnoozeReceiver" />
-        <receiver android:name=".receivers.DismissReceiver" />
-        <receiver android:name=".receivers.NagReceiver" />
-        <receiver
-            android:name=".receivers.BootReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-            </intent-filter>
-        </receiver>
+
+
     </application>
 
 </manifest>

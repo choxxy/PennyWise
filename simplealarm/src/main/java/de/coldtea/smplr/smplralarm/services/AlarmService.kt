@@ -1,0 +1,147 @@
+package de.coldtea.smplr.smplralarm.services
+
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import de.coldtea.smplr.smplralarm.extensions.getTimeExactForAlarmInMilliseconds
+import de.coldtea.smplr.smplralarm.models.WeekDays
+import de.coldtea.smplr.smplralarm.receivers.ActivateAppReceiver
+import de.coldtea.smplr.smplralarm.models.AlarmNotification
+import de.coldtea.smplr.smplralarm.receivers.AlarmReceiver
+import de.coldtea.smplr.smplralarm.models.SmplrAlarmReceiverObjects
+import java.time.LocalDate
+import java.util.*
+
+/**
+ * Created by [Yasar Naci Gündüz](https://github.com/ColdTea-Projects).
+ */
+class AlarmService(val context: Context) {
+
+    private val alarmManager: AlarmManager by lazy {
+        context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    }
+
+    private val calendar
+        get() = Calendar.getInstance()
+
+    fun setAlarm(
+        requestCode: Int,
+        hour: Int,
+        min: Int,
+        date: LocalDate,
+        weekDays: List<WeekDays>,
+        receiverIntent: PendingIntent? = null
+    ) {
+        val alarmReceiverIntent = receiverIntent ?: createReceiverPendingIntent(requestCode, 0)
+        val openAppIntent = createOpenAppPendingIntent(requestCode, 0)
+        val exactAlarmTime = calendar.getTimeExactForAlarmInMilliseconds(hour, min,date, weekDays)
+
+        val alarmClockInfo = AlarmManager.AlarmClockInfo(
+            exactAlarmTime,
+            openAppIntent
+        )
+
+        alarmManager.setAlarmClock(
+            alarmClockInfo,
+            alarmReceiverIntent
+        )
+    }
+
+    fun setAlarm(
+        alarmNotification: AlarmNotification
+    ) {
+        setAlarm(
+            requestCode = alarmNotification.alarmNotificationId,
+            hour = alarmNotification.hour,
+            min = alarmNotification.min,
+            date = alarmNotification.date,
+            weekDays = alarmNotification.weekDays
+        )
+    }
+
+    fun resetAlarmTomorrow(alarmNotification: AlarmNotification) {
+        val pendingIntent = getReceiverPendingIntent(
+            alarmNotification.alarmNotificationId,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        setAlarm(
+            requestCode = alarmNotification.alarmNotificationId,
+            hour = alarmNotification.hour,
+            min = alarmNotification.min,
+            date = alarmNotification.date,
+            weekDays = alarmNotification.weekDays,
+            receiverIntent = pendingIntent
+        )
+    }
+
+    fun renewAlarm(alarmNotification: AlarmNotification) {
+        cancelAlarm(alarmNotification.alarmNotificationId)
+
+        val pendingIntent = createReceiverPendingIntent(
+            alarmNotification.alarmNotificationId,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        setAlarm(
+            requestCode = alarmNotification.alarmNotificationId,
+            hour = alarmNotification.hour,
+            min = alarmNotification.min,
+            date = alarmNotification.date,
+            weekDays = alarmNotification.weekDays,
+            receiverIntent = pendingIntent
+        )
+
+    }
+
+    fun alarmExist(requestCode: Int): Boolean =
+        getReceiverPendingIntent(
+            requestCode,
+            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
+        ) != null
+
+    fun cancelAlarm(requestCode: Int) {
+        val pendingIntent =
+            getReceiverPendingIntent(
+                requestCode,
+                PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
+            ) ?: return
+        alarmManager.cancel(pendingIntent)
+    }
+
+    private fun createReceiverPendingIntent(requestCode: Int, flag: Int) =
+        PendingIntent.getBroadcast(
+            context,
+            requestCode,
+            Intent(
+                context,
+                AlarmReceiver::class.java
+            ).putExtra(SmplrAlarmReceiverObjects.SMPLR_ALARM_RECEIVER_INTENT_ID, requestCode),
+            flag or PendingIntent.FLAG_IMMUTABLE
+        )
+
+    private fun getReceiverPendingIntent(requestCode: Int, flag: Int) = PendingIntent.getBroadcast(
+        context,
+        requestCode,
+        Intent(context, AlarmReceiver::class.java).putExtra(
+            SmplrAlarmReceiverObjects.SMPLR_ALARM_RECEIVER_INTENT_ID,
+            requestCode
+        ),
+        flag or PendingIntent.FLAG_IMMUTABLE
+    )
+
+    private fun createOpenAppPendingIntent(requestCode: Int, flag: Int) =
+        PendingIntent.getBroadcast(
+            context,
+            requestCode,
+            Intent(
+                context,
+                ActivateAppReceiver::class.java
+            ).putExtra(
+                SmplrAlarmReceiverObjects.SMPLR_ALARM_RECEIVER_INTENT_ID,
+                requestCode
+            ),
+            flag or PendingIntent.FLAG_IMMUTABLE
+        )
+}

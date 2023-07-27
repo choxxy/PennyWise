@@ -6,6 +6,8 @@ import com.iogarage.ke.pennywise.R
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
+    val currency: CurrencyPreference? = null
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
     }
