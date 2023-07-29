@@ -23,7 +23,7 @@ object Converter {
     @InverseMethod("currencyToDouble")
     @JvmStatic
     fun doubleToCurrency(value: Double): String {
-        return value.toCurrency()
+        return value.toString()//toCurrency()
     }
 
     @JvmStatic

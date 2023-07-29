@@ -18,6 +18,8 @@ import com.iogarage.ke.pennywise.domain.entity.TransactionType
 import com.iogarage.ke.pennywise.receivers.AlarmBroadcastReceiver
 import com.iogarage.ke.pennywise.receivers.SnoozeActionReceiver
 import com.iogarage.ke.pennywise.util.AppPreferences
+import com.iogarage.ke.pennywise.util.asDateString
+import com.iogarage.ke.pennywise.util.toCurrency
 import com.iogarage.ke.pennywise.views.PennyMain
 import com.iogarage.ke.pennywise.views.lockscreenalarm.ActivityLockScreenAlarm
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -125,14 +127,35 @@ class TransactionViewModel @Inject constructor(
     fun save() {
         viewModelScope.launch {
             if (validateInput()) {
-                transactionRepository.insertTransaction(transactionDto.toEntity())
                 if (transactionDto.reminderDate != 0L) {
                     val defaultAlarmHour = appPreferences.getDefaultAlarmHour()
-                    setAlarm(defaultAlarmHour, 0, transactionDto.reminderDate.asLocalDate())
+
+
+                    transactionDto.alarmId =
+                        setAlarm(
+                            14,
+                            54,
+                            transactionDto.reminderDate.asLocalDate(),
+                            getNotificationMessage()
+                        )
                 }
+                transactionRepository.insertTransaction(transactionDto.toEntity())
             }
         }
 
+    }
+
+    private fun getNotificationMessage(): String {
+        return if (transactionDto.type == TransactionType.BORROWING)
+            "Hey, a friendly reminder about the ${transactionDto.amount.toCurrency()}" +
+                    " loan you owe ${transactionDto.personName}." +
+                    " Please remember to make the payment by ${
+                        transactionDto.payDate.asDateString("dd MMM, yyyy")
+                    } to avoid missing the due date."
+        else
+            "Hey, a reminder that the ${transactionDto.amount.toCurrency()}" +
+                    " loan you gave ${transactionDto.personName} is due on " +
+                    "${transactionDto.payDate.asDateString("dd MMM, yyyy")}."
     }
 
     fun setEndDate(timeInMillis: Long) {
@@ -147,7 +170,7 @@ class TransactionViewModel @Inject constructor(
         transactionDto.transactionDate = localDate.toEpochDay()
     }
 
-    private fun setAlarm(hour: Int, minute: Int, date: LocalDate): Int {
+    private fun setAlarm(hour: Int, minute: Int, date: LocalDate, message: String): Int {
 
         val onClickShortcutIntent = Intent(
             context,
@@ -170,6 +193,7 @@ class TransactionViewModel @Inject constructor(
             putExtra(MINUTE, minute)
         }
 
+
         val dismissIntent = Intent(context, ActionReceiver::class.java).apply {
             action = ACTION_DISMISS
         }
@@ -186,19 +210,19 @@ class TransactionViewModel @Inject constructor(
             date { date }
             weekdays {}
             contentIntent { onClickShortcutIntent }
-            receiverIntent { fullScreenIntent }
+            //receiverIntent { fullScreenIntent }
             alarmReceivedIntent { alarmReceivedIntent }
             notification {
                 alarmNotification {
                     smallIcon { R.drawable.alarm }
-                    title { "Simple alarm is ringing" }
-                    message { "Simple alarm is ringing" }
-                    bigText { "Simple alarm is ringing" }
+                    title { "PennyWise" }
+                    message { message }
+                    bigText { "" }
                     autoCancel { true }
-                    firstButtonText { "Snooze" }
+                    /*firstButtonText { "Snooze" }
                     secondButtonText { "Dismiss" }
                     firstButtonIntent { snoozeIntent }
-                    secondButtonIntent { dismissIntent }
+                    secondButtonIntent { dismissIntent }*/
                     notificationDismissedIntent { notificationDismissIntent }
                 }
             }

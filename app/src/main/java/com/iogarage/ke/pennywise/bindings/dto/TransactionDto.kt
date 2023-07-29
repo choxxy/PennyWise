@@ -12,6 +12,7 @@ import java.time.LocalDate
 class TransactionDto : BaseObservable() {
 
     var debtId: Long = 0
+    var alarmId: Int = 0
     var reminderStatus: ReminderStatus = ReminderStatus.OFF
     var reminderTitle: String = ""
     var reminderMessage: String = ""
@@ -55,7 +56,7 @@ class TransactionDto : BaseObservable() {
         }
 
     @get:Bindable // 1
-    var payDate: Long = 0
+    var payDate: Long = LocalDate.now().plusMonths(1).toEpochDay()
         set(value) {
             field = value
             notifyPropertyChanged(BR.payDate) // 2
@@ -115,6 +116,7 @@ fun TransactionDto.toEntity(): Transaction =
         reminderContent = this.reminderMessage,
         reminderDate = this.reminderDate,
         reminderStatus = this.reminderStatus,
+        alarmId = this.alarmId
     )
 
 fun TransactionDto.fromEntity(entity: Transaction) {
@@ -133,6 +135,7 @@ fun TransactionDto.fromEntity(entity: Transaction) {
     this.reminderTitle = entity.reminderTitle
     this.reminderMessage = entity.reminderContent
     this.reminderDate = entity.reminderDate
+    this.alarmId = entity.alarmId
     this.reminderStatus = entity.reminderStatus
 }
 

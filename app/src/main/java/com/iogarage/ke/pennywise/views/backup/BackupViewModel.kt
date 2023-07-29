@@ -30,6 +30,7 @@ data class AuthState(
     val isUserSignIn: Boolean = false,
     val currentUser: GoogleSignInAccount? = null,
     val syncDate: String? = null,
+    val error: String? = null,
     val isLoading: Boolean = false
 )
 
@@ -73,6 +74,10 @@ class BackupViewModel @Inject constructor(
         _uiState.update { it.copy(currentUser = account, isUserSignIn = account != null) }
     }
 
+    fun setError(error: String?) {
+        _uiState.update { it.copy(error = error) }
+    }
+
     fun performLogout() {
         appPreferences.remove(AppPreferences.LAST_SYNC_TIME)
         googleSignInClient.signOut()
@@ -81,7 +86,11 @@ class BackupViewModel @Inject constructor(
 
     private fun lastSyncDate() {
         val lstSyncTime = appPreferences.getString(AppPreferences.LAST_SYNC_TIME)
-        _uiState.update { it.copy(syncDate = lstSyncTime) }
+        if (lstSyncTime.isNullOrEmpty())
+            _uiState.update { it.copy(syncDate = "") }
+        else
+            _uiState.update { it.copy(syncDate = "Last sync date: $lstSyncTime") }
+
     }
 
     fun syncNow() {
@@ -95,7 +104,7 @@ class BackupViewModel @Inject constructor(
                     .setRequiredNetworkType(NetworkType.UNMETERED)
                     .build()
                 val work = OneTimeWorkRequest.Builder(GoogleDriveSyncWorker::class.java)
-                        .setConstraints(constraints).build()
+                    .setConstraints(constraints).build()
                 workManager.getWorkInfoByIdLiveData(work.id).observeForever { workInfo ->
                     when (workInfo.state) {
                         WorkInfo.State.SUCCEEDED -> {

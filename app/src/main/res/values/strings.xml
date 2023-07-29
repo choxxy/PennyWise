@@ -53,7 +53,7 @@
 
 
     <string name="transaction_adId">ca-app-pub-6424626033677167/8103931336</string>
-    <string name="details_adId">ca-app-pub-6424626033677167/6627198135</string>
+    <string name="payment_adId">ca-app-pub-6424626033677167/6627198135</string>
     <string name="home_adId">ca-app-pub-6424626033677167/2644906935</string>
     <string name="test_AdId">ca-app-pub-3940256099942544/6300978111</string>
     <string name="deleted">Delete</string>
@@ -116,7 +116,6 @@
     <string name="palette">Palette</string>
     <string name="colors">Colors</string>
     <string name="color">Color</string>
-    <string name="copy_clipboard">Copied to clipboard.</string>
 
     <!-- THEME -->
     <string name="base_theme">Base Theme</string>
@@ -186,7 +185,7 @@
     <string name="name">Name</string>
 
 
-    <string name="desc_google_drive_login">Please perform google authentication to sync your details with Google drive.  Please note, you will be redirected to google api for further authentication and you may see \"UNVERIFIED APP\" dialog due to unavailability of our own server. \n\nWe don\'t steal any of your data, please read privacy policy for more details</string>
+    <string name="desc_google_drive_login">Please perform google authentication to sync your application data with Google drive.\n\nPlease note, your application data will be stored in your Google drive and not our servers.</string>
     <string name="desc_google_drive_logout">This system using your google drive account to sync your details. Please use logout option to Logout, if you no longer wanted to sync the data</string>
     <string name="title_google_drive">Let\'s sync with GoogleDrive</string>
     <string name="btn_login">Google SignIn</string>

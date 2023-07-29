@@ -1,4 +1,4 @@
-package com.iogarage.ke.pennywise.views.transactions
+package com.iogarage.ke.pennywise.views.home
 
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -14,10 +14,11 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.iogarage.ke.pennywise.R
+import com.iogarage.ke.pennywise.api.ContactManager
 import com.iogarage.ke.pennywise.domain.entity.Transaction
 import com.iogarage.ke.pennywise.domain.entity.TransactionType
-import com.iogarage.ke.pennywise.util.Util
 import com.iogarage.ke.pennywise.util.asString
+import com.iogarage.ke.pennywise.util.toCurrency
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 import java.util.LinkedList
@@ -89,31 +90,31 @@ class TransactionAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (_, _, personName, _, _, _, payDate, _, balance, type, currency) = _dataset[position]
-        val date = LocalDate.ofEpochDay(payDate)
+        val transaction = _dataset[position]
+        val date = LocalDate.ofEpochDay(transaction.payDate)
         val debug = date.asString("MMM dd", Locale.getDefault())
-        Log.d("END_DATE", "$debug $payDate")
+        Log.d("END_DATE", "$debug $transaction.payDate")
 
         // Show header for item if it is the first in date group
-        if (position > 0 && payDate == _dataset[position - 1].payDate) {
+        if (position > 0 && transaction.payDate == _dataset[position - 1].payDate) {
             holder.textSeparator.visibility = View.GONE
         } else {
             val header = date.asString(
                 "MMM dd",
                 Locale.getDefault()
-            ) // getAppropriateDateFormat(mContext, calendar);
+            )
             holder.textSeparator.text = header
             holder.textSeparator.visibility = View.VISIBLE
         }
-        holder.mTextView.text = personName
-        if (type === TransactionType.LENDING) {
+        holder.mTextView.text = transaction.personName
+        if (transaction.type === TransactionType.LENDING) {
             holder.mAmount.setTextColor(
                 ContextCompat.getColor(
                     holder.itemView.context,
                     R.color.md_red_500
                 )
             )
-            holder.mAmount.text = Util.formatCurrency(balance)
+            holder.mAmount.text = transaction.balance.toCurrency()
         } else {
             holder.mAmount.setTextColor(
                 ContextCompat.getColor(
@@ -121,26 +122,25 @@ class TransactionAdapter(
                     R.color.md_green_500
                 )
             )
-            holder.mAmount.text = Util.formatCurrency(balance)
+            holder.mAmount.text = transaction.balance.toCurrency()
         }
-        holder.mCurrency.text = currency
+        holder.mCurrency.text = transaction.currency
         val dueDate = date.asString(
             "E, dd MMM, yyyy",
             Locale.getDefault()
-        ) // getAppropriateDateFormat(mContext, calendar);
+        )
         holder.mTrxDate.text = "Due date: $dueDate"
-        val photo: Bitmap? = null
+        var photo: Bitmap? = null
         try {
-            //  photo = ContactManager.getPhoto(mContext, transaction.getPhonenumber());
+            photo = ContactManager.getPhoto(holder.itemView.context, transaction.phoneNumber)
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
         if (photo != null) {
-            //Bitmap photo = BitmapFactory.decodeByteArray(transaction.getImage(), 0, transaction.getImage().length);
             holder.image.setImageBitmap(photo)
         }
         val today = LocalDate.now()
-        val toDate = LocalDate.ofEpochDay(payDate)
+        val toDate = LocalDate.ofEpochDay(transaction.payDate)
         val days = ChronoUnit.DAYS.between(today, toDate)
         if (days > 1) holder.status.text = "$days days" else if (days == 1L) holder.status.text =
             "$days day" else if (days == 0L) {
@@ -150,7 +150,7 @@ class TransactionAdapter(
             holder.status.text = "overdue"
             holder.status.setTextColor(Color.RED)
         }
-        if (balance <= 0) holder.status.text = "paid"
+        if (transaction.balance <= 0) holder.status.text = "paid"
     }
 
     override fun onCreateViewHolder(
@@ -183,13 +183,13 @@ class TransactionAdapter(
             } else {
                 val filterPattern =
                     constraint.toString().lowercase(Locale.getDefault()).trim { it <= ' ' }
-                for ((transactionId, transactionDate, personName, phoneNumber, amount, note, payDate, paid, balance, type, currency, status, reminderTitle, reminderContent, reminderDate, reminderStatus) in _originalList) {
-                    /*  String name = transaction.getPersonname().toLowerCase().trim();
-                    String phone = transaction.getPhonenumber().toLowerCase().trim();
+                for (transaction in _originalList) {
+                    val name = transaction.personName.lowercase().trim();
+                    val phone = transaction.phoneNumber.trim();
 
                     if (name.startsWith(filterPattern) || phone.startsWith(filterPattern)) {
                         filteredList.add(transaction);
-                    }*/
+                    }
                 }
             }
             results.values = filteredList

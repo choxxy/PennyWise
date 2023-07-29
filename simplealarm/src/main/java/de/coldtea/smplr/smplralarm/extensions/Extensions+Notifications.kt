@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.core.app.TaskStackBuilder
 import de.coldtea.smplr.smplralarm.R
 import de.coldtea.smplr.smplralarm.apis.SmplrAlarmAPI.Companion.SMPLR_ALARM_NOTIFICATION_ID
 import de.coldtea.smplr.smplralarm.apis.SmplrAlarmAPI.Companion.SMPLR_ALARM_REQUEST_ID
@@ -27,7 +28,7 @@ private fun Context.initChannelAndReturnName(notificationChannelItem: Notificati
             val channel = NotificationChannel(channelId, name, importance).apply {
                 description = description
                 setShowBadge(showBadge)
-                setSound(null ,null)
+                setSound(null, null)
             }
             notificationManager.createNotificationChannel(channel)
         }
@@ -46,58 +47,64 @@ internal fun Context.showNotification(
     val channelId = initChannelAndReturnName(notificationChannelItem)
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    val notification = NotificationCompat.Builder(this, channelId).apply {
-        priority = NotificationCompat.PRIORITY_HIGH
-        with(notificationItem) {
-            setSmallIcon(smallIcon?: R.drawable.ic_baseline_notifications_active_24)
-            setContentTitle(title)
-            setContentText(message)
-            setStyle(NotificationCompat.BigTextStyle().bigText(bigText))
-            priority = NotificationCompat.PRIORITY_DEFAULT
-            setAutoCancel(autoCancel?:true)
-            setAllowSystemGeneratedContextualActions(false)
+    val notification = NotificationCompat.Builder(this, channelId)
+        .apply {
+            priority = NotificationCompat.PRIORITY_HIGH
+            with(notificationItem) {
+                setSmallIcon(smallIcon ?: R.drawable.ic_baseline_notifications_active_24)
+                setContentTitle(title)
+                setContentText(message)
+                setStyle(NotificationCompat.BigTextStyle().bigText(bigText))
+                priority = NotificationCompat.PRIORITY_DEFAULT
+                setAutoCancel(autoCancel ?: true)
+                setAllowSystemGeneratedContextualActions(false)
 
-            if (notificationItem.notificationDismissedIntent != null){
-                setDeleteIntent(
-                    this@showNotification.getBroadcast(
-                        requestId,
-                        requireNotNull(notificationItem.notificationDismissedIntent)
+                if (notificationItem.notificationDismissedIntent != null) {
+                    setDeleteIntent(
+                        this@showNotification.getBroadcast(
+                            requestId,
+                            requireNotNull(notificationItem.notificationDismissedIntent)
+                        )
                     )
-                )
+                }
+
+                if (contentIntent != null) {
+                    setContentIntent(
+                        getScreenIntent(requestId, contentIntent)
+                    )
+                }
+
+                if (fullScreenIntent != null) {
+                    setFullScreenIntent(
+                        getScreenIntent(requestId, fullScreenIntent),
+                        true
+                    )
+                }
+
+                if (notificationItem.firstButtonText != null && notificationItem.firstButtonIntent != null) {
+                    addAction(
+                        0,
+                        notificationItem.firstButtonText,
+                        this@showNotification.getBroadcast(
+                            requestId,
+                            requireNotNull(notificationItem.firstButtonIntent)
+                        ),
+                    )
+
+                }
+
+                if (notificationItem.secondButtonText != null && notificationItem.secondButtonIntent != null) {
+                    addAction(
+                        0,
+                        notificationItem.secondButtonText,
+                        this@showNotification.getBroadcast(
+                            requestId,
+                            requireNotNull(notificationItem.secondButtonIntent)
+                        )
+                    )
+                }
             }
-
-            if (contentIntent != null) {
-                setContentIntent(
-                    getScreenIntent(requestId, contentIntent)
-                )
-            }
-
-            if (fullScreenIntent != null) {
-                setFullScreenIntent(
-                    getScreenIntent(requestId, fullScreenIntent),
-                    true
-                )
-            }
-
-            if (notificationItem.firstButtonText != null && notificationItem.firstButtonIntent != null) addAction(
-                0,
-                notificationItem.firstButtonText,
-                this@showNotification.getBroadcast(
-                    requestId,
-                    requireNotNull(notificationItem.firstButtonIntent)
-                )
-            )
-
-            if (notificationItem.secondButtonText != null && notificationItem.secondButtonIntent != null) addAction(
-                0,
-                notificationItem.secondButtonText,
-                this@showNotification.getBroadcast(
-                    requestId,
-                    requireNotNull(notificationItem.secondButtonIntent)
-                )
-            )
-        }
-    }.build()
+        }.build()
 
     notificationManager.notify(requestId, notification)
 
@@ -114,7 +121,20 @@ internal fun Context.getScreenIntent(requestId: Int, intent: Intent): PendingInt
         intent,
         PendingIntent.FLAG_IMMUTABLE
     )
-private fun Context.getBroadcast(requestId: Int, intent: Intent): PendingIntent =
+
+private fun Context.getPendingIntent(requestId: Int, intent: Intent): PendingIntent? =
+    TaskStackBuilder.create(this).run {
+        // Add the intent, which inflates the back stack
+        addNextIntent(intent)
+        // Get the PendingIntent containing the entire back stack
+        getPendingIntent(
+            requestId, PendingIntent.FLAG_UPDATE_CURRENT or
+                    // mutability flag required when targeting Android12 or higher
+                    PendingIntent.FLAG_IMMUTABLE
+        )
+    }
+
+private fun Context.getBroadcast(requestId: Int, intent: Intent): PendingIntent? =
     PendingIntent.getBroadcast(
         this,
         requestId,

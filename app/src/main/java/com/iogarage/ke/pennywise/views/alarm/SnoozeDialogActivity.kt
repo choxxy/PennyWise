@@ -23,7 +23,7 @@ class SnoozeDialogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val view = layoutInflater.inflate(R.layout.number_picker, null)
         val reminderId = intent.getIntExtra("NOTIFICATION_ID", 0)
-        val builder = AlertDialog.Builder(this, R.style.Dialog)
+        val builder = AlertDialog.Builder(this/*, R.style.Dialog*/)
         builder.setTitle(R.string.snooze_length)
         hourPicker = view.findViewById(R.id.picker1)
         minutePicker = view.findViewById(R.id.picker2)

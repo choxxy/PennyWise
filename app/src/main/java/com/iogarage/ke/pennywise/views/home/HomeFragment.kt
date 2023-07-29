@@ -16,11 +16,9 @@ import com.iogarage.ke.pennywise.databinding.FragmentHomeBinding
 import com.iogarage.ke.pennywise.domain.entity.Transaction
 import com.iogarage.ke.pennywise.domain.entity.TransactionType
 import com.iogarage.ke.pennywise.util.AppPreferences
-import com.iogarage.ke.pennywise.util.Util
 import com.iogarage.ke.pennywise.util.toCurrency
 import com.iogarage.ke.pennywise.util.viewBinding
 import com.iogarage.ke.pennywise.views.settings.CurrencyPreference.Companion.CURRENCY_SYMBOL
-import com.iogarage.ke.pennywise.views.transactions.TransactionAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -40,8 +38,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     private var dataset: List<Transaction> = emptyList()
     private var showAll = true
     private var transactionView = 0
-    private val TIME_TO_AUTOMATICALLY_DISMISS_ITEM = 3000
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -110,26 +106,32 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
     private fun updateView(view: Int) {
         // loadData(view)
-        binding.borrowedLabel.text = getString(R.string.formatted_amount,currency,borrowed.toCurrency())
-        binding.lentLabel.text = getString(R.string.formatted_amount,currency,lent.toCurrency())
+        binding.borrowedLabel.text =
+            getString(R.string.formatted_amount, currency, borrowed.toCurrency())
+        binding.lentLabel.text = getString(R.string.formatted_amount, currency, lent.toCurrency())
     }
 
     private fun showTransactions(transactions: List<Transaction>) {
         transactionView = 0
+
         binding.emptyView.visibility = if (transactions.isEmpty())
             View.VISIBLE else View.GONE
-        borrowed = getTotal(transactions, TransactionType.BORROWING)
-        lent = getTotal(transactions, TransactionType.LENDING)
 
-        mAdapter = TransactionAdapter(transactions) {
+        val sorted = transactions.sortedBy { it.payDate }
+
+        borrowed = getTotal(sorted, TransactionType.BORROWING)
+        lent = getTotal(sorted, TransactionType.LENDING)
+
+        mAdapter = TransactionAdapter(sorted) {
             val direction = HomeFragmentDirections.actionToPaymentView(it)
             findNavController().navigate(direction)
         }
 
         binding.myRecyclerView.adapter = mAdapter
 
-        binding.borrowedLabel.text = getString(R.string.formatted_amount,currency,borrowed.toCurrency())
-        binding.lentLabel.text = getString(R.string.formatted_amount,currency,lent.toCurrency())
+        binding.borrowedLabel.text =
+            getString(R.string.formatted_amount, currency, borrowed.toCurrency())
+        binding.lentLabel.text = getString(R.string.formatted_amount, currency, lent.toCurrency())
     }
 
     fun onAction(action: Int) {
@@ -153,10 +155,5 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         binding.adView.destroy()
         super.onDestroy()
     }
-
-    /* @Subscribe
-     fun updateData(updateData: UpdateData?) {
-         updateView(0)
-     }*/
 
 }

@@ -27,7 +27,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:onClick="onClick"
             android:orientation="vertical"
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +58,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:onClick="onClick"
             android:orientation="vertical"
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -90,7 +88,7 @@
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         app:adSize="SMART_BANNER"
-        app:adUnitId="@string/test_AdId"
+        app:adUnitId="@string/home_adId"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:visibility="gone" />
@@ -135,8 +133,7 @@
                 android:layout_margin="16dp"
                 android:src="@drawable/ic_add_white_24dp"
                 app:layout_anchor="@id/my_recycler_view"
-                app:layout_anchorGravity="bottom|right|end"
-                app:layout_behavior="com.iogarage.ke.pennywise.util.FABScrollBehavior" />
+                app:layout_anchorGravity="bottom|right|end" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

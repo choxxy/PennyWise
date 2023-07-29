@@ -26,7 +26,7 @@
             android:layout_gravity="top"
             android:visibility="gone"
             app:adSize="SMART_BANNER"
-            app:adUnitId="@string/test_AdId"
+            app:adUnitId="@string/transaction_adId"
             tools:visibility="visible" />
 
         <ScrollView

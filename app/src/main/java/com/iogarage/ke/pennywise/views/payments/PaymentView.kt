@@ -1,6 +1,7 @@
 package com.iogarage.ke.pennywise.views.payments
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -16,6 +17,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
 import com.afollestad.materialdialogs.actions.getActionButton
@@ -24,23 +27,31 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.material.textfield.TextInputLayout
 import com.iogarage.ke.pennywise.R
+import com.iogarage.ke.pennywise.api.ContactManager
 import com.iogarage.ke.pennywise.databinding.FragmentPaymentBinding
 import com.iogarage.ke.pennywise.domain.entity.Payment
 import com.iogarage.ke.pennywise.domain.entity.ReminderStatus
 import com.iogarage.ke.pennywise.domain.entity.Transaction
 import com.iogarage.ke.pennywise.domain.entity.TransactionType
 import com.iogarage.ke.pennywise.domain.entity.TransactionWithPayments
+import com.iogarage.ke.pennywise.util.AppPreferences
 import com.iogarage.ke.pennywise.util.asDateString
 import com.iogarage.ke.pennywise.util.asString
 import com.iogarage.ke.pennywise.util.toCurrency
 import com.iogarage.ke.pennywise.util.viewBinding
+import com.iogarage.ke.pennywise.views.settings.CurrencyPreference
 import dagger.hilt.android.AndroidEntryPoint
+import de.coldtea.smplr.smplralarm.smplrAlarmCancel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import javax.inject.Inject
 import kotlin.math.abs
 
 @AndroidEntryPoint
 class PaymentView : Fragment(R.layout.fragment_payment) {
+
+    @Inject
+    lateinit var appPreferences: AppPreferences
 
     private var hasPayments: Boolean = false
     private val binding by viewBinding(FragmentPaymentBinding::bind)
@@ -48,6 +59,7 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
     private var transaction: Transaction? = null
     private var currency: String? = null
     private var msg_template: String? = null
+    private lateinit var overflowMenu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,17 +83,38 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
     }
 
     private fun updateUi(item: TransactionWithPayments) {
+
         transaction = item.transaction
         hasPayments = item.payments.isNotEmpty()
 
-        /*val sharedPref: SharedPreferences? = PreferenceManager.getDefaultSharedPreferences(this)
-        if (sharedPref != null) {
-            currency = sharedPref.getString(getString(R.string.prefCurrency), "")
-            msg_template = sharedPref.getString(getString(R.string.prefTemplate), "")
+
+
+        if (transaction?.paid == true) {
+            overflowMenu.removeItem(R.id.action_pay)
+            overflowMenu.removeItem(R.id.action_edit)
         }
-        if (!currency!!.isEmpty()) {
-            if (currency.equals("146", ignoreCase = true)) currency = ""
-        }*/
+        if (transaction?.type == TransactionType.BORROWING)
+            overflowMenu.removeItem(R.id.action_message)
+        if (hasPayments)
+            overflowMenu.removeItem(R.id.action_edit)
+
+        currency = appPreferences.getString(CurrencyPreference.CURRENCY_SYMBOL, "")
+        msg_template = appPreferences.getString(getString(R.string.prefTemplate), "")
+
+
+        var photo: Bitmap? = null
+        try {
+            photo = ContactManager.getPhoto(requireContext(), item.transaction.phoneNumber)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+        if (photo != null) {
+            binding.image.load(photo) {
+                placeholder(R.drawable.placeholder)
+                transformations(CircleCropTransformation())
+            }
+        }
+
         binding.loanDetailsLoanAmount.text = transaction?.amount?.toCurrency()
         binding.loanDetailsBalance.text = transaction?.balance?.toCurrency()
         binding.loanDetailsPhoneNoText.text = transaction?.phoneNumber
@@ -163,6 +196,8 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
                 // Add menu items here
                 menuInflater.inflate(R.menu.pay_menu, menu)
 
+                overflowMenu = menu
+
                 if (transaction?.paid == true) {
                     menu.removeItem(R.id.action_pay)
                     menu.removeItem(R.id.action_edit)
@@ -200,6 +235,7 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
                         sendMessage()
                         true
                     }
+
 
                     else -> false
                 }
@@ -366,9 +402,9 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
         } else {
             description = getString(R.string.payment)
             if (paidAmount > transaction?.balance!!) {
-                til.setError("Payment amount exceeds balance")
+                til.error = "Payment amount exceeds balance"
                 return
-            } else til.setError(null)
+            } else til.error = null
         }
         val payment = Payment(
             transactionId = transaction?.transactionId!!,
@@ -385,11 +421,11 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
     }
 
     private fun updateReminder() {
-        /*  val reminder: Reminder = transaction.getReminder()
-          if (reminder != null) {
-              reminder.setActive(false)
-              reminderDao.update(reminder)
-          }*/
+        transaction?.let {
+            smplrAlarmCancel(requireContext()) {
+                requestCode { it.alarmId }
+            }
+        }
     }
 
     private fun updateBalance(paid: Double) {
@@ -397,6 +433,7 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
         if (balance <= 0) {
             transaction?.paid = true
             transaction?.reminderStatus = ReminderStatus.OFF
+            updateReminder()
         }
         transaction?.balance = balance
         if (transaction != null)
@@ -412,6 +449,7 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
         binding.adView.pause()
         super.onPause()
     }
+
     companion object {
         private const val PAY = 1
         private const val EDIT = 2

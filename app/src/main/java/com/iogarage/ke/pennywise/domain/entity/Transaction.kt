@@ -8,7 +8,7 @@ import java.time.LocalDate
 data class Transaction(
     @PrimaryKey(autoGenerate = true)
     var transactionId: Long = 0,
-    var transactionDate: Long =  LocalDate.now().toEpochDay(),
+    var transactionDate: Long = LocalDate.now().toEpochDay(),
     var personName: String = "",
     var phoneNumber: String = "",
     var amount: Double = 0.0,
@@ -22,6 +22,7 @@ data class Transaction(
     var reminderTitle: String = "",
     var reminderContent: String = "",
     var reminderDate: Long = 0,
+    var alarmId: Int = 0,
     var reminderStatus: ReminderStatus = ReminderStatus.OFF,
 )
 

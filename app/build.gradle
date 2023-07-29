@@ -134,6 +134,8 @@ dependencies {
     //timber
     implementation libs.timber
 
+    implementation "io.coil-kt:coil:2.4.0"
+
 }
 
 

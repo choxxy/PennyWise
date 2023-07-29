@@ -251,7 +251,7 @@ class TransactionView : Fragment() {
                     transactionViewModel.setStartDate(it)
                 }
 
-                R.id.reminder_text -> {
+                R.id.reminder_date -> {
                     transactionViewModel.setReminderDate(it)
                 }
             }
