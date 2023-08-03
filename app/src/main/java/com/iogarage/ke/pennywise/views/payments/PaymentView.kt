@@ -322,6 +322,8 @@ class PaymentView : Fragment(R.layout.fragment_payment) {
                 updateBalance(difference)
                 materialDialog.dismiss()
             }
+
+
     }
 
     private fun payDialog(action: Int) {

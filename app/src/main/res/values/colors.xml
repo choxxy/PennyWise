@@ -354,6 +354,10 @@
     <color name="glucosio_accent">#F0D04C</color>
 
 
+    <color name="swipeBehindBackground">#d0184c</color>
+    <color name="swipeBehindBackgroundSecondary">#17af98</color>
+    <color name="swipeBehindTextColor">#ffffff</color>
+    <color name="divider">#e1e1e1</color>
     <!-- blue_grey -->
 
 </resources>

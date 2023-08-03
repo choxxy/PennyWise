@@ -244,6 +244,13 @@
     <string name="search">Search</string>
     <string name="currency">Currency</string>
 
+    <string name="undoCaps">UNDO</string>
+    <string name="itemRemovedMessage">%1$s transaction was removed.</string>
+    <string name="itemArchivedMessage">%1$s transaction was archived.</string>
+
+    <string name="generic_delete">Delete</string>
+    <string name="generic_archive">Archive</string>
+
 
 </resources>
 

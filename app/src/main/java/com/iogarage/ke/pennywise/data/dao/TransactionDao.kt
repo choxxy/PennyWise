@@ -15,8 +15,11 @@ import com.iogarage.ke.pennywise.domain.entity.Transaction as Trx
 @Dao
 interface TransactionDao {
 
-    @Query("SELECT * FROM transactions")
-    fun getDebts(): Flow<List<Trx>>
+    @Query("SELECT * FROM transactions where paid='0'")
+    fun getPendingTransactions(): Flow<List<Trx>>
+
+    @Query("SELECT * FROM transactions ")
+    fun getAllTransactions(): Flow<List<Trx>>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
