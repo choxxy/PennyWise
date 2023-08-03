@@ -198,7 +198,7 @@
                     android:layout_marginHorizontal="48dp"
                     android:layout_marginBottom="4dp"
                     android:paddingStart="16dp"
-                    android:textColor="#B00020"
+                    android:textColor="?attr/colorError"
                     app:errorText="@{viewModel.transactionTypeError}"
                     android:visibility="@{viewModel.transactionTypeError.empty ? View.GONE : View.VISIBLE}"
                     android:textAppearance="?textAppearanceBodySmall" />
@@ -274,8 +274,7 @@
                                 android:layout_weight="2"
                                 android:gravity="center_vertical"
                                 android:text="@string/start_date"
-                                android:textAppearance="?textAppearanceTitleSmall"
-                                android:textColor="@android:color/primary_text_light" />
+                                android:textAppearance="?textAppearanceTitleSmall" />
 
 
                             <TextView
@@ -285,8 +284,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center_vertical|end"
                                 android:onClick="onClick"
-                                android:text="@={Converter.dateToString(viewModel.transactionDto.transactionDate)}"
-                                android:textColor="@android:color/primary_text_light" />
+                                android:text="@={Converter.dateToString(viewModel.transactionDto.transactionDate)}" />
 
 
                         </LinearLayout>
@@ -302,8 +300,7 @@
                                 android:layout_weight="2"
                                 android:gravity="center_vertical"
                                 android:text="@string/due_date"
-                                android:textAppearance="?textAppearanceTitleSmall"
-                                android:textColor="@android:color/primary_text_light" />
+                                android:textAppearance="?textAppearanceTitleSmall" />
 
 
                             <TextView
@@ -312,8 +309,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center_vertical|end"
-                                android:text="@={Converter.dateToString(viewModel.transactionDto.payDate)}"
-                                android:textColor="@android:color/primary_text_light" />
+                                android:text="@={Converter.dateToString(viewModel.transactionDto.payDate)}" />
 
                         </LinearLayout>
 
@@ -347,7 +343,6 @@
                         android:hint="@string/add_reminder"
                         android:paddingStart="4dp"
                         android:text="@={Converter.dateToString(viewModel.transactionDto.reminderDate)}"
-                        android:textColor="@android:color/black"
                         android:textSize="@dimen/text_four_teen" />
 
                 </LinearLayout>

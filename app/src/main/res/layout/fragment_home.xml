@@ -4,19 +4,19 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dashboard"
         android:layout_width="match_parent"
+        android:background="?attr/colorPrimary"
         android:layout_height="96dp">
 
         <View
             android:id="@+id/divider"
             android:layout_width="2dp"
             android:layout_height="72dp"
-            android:background="@color/md_white"
+            android:background="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/lentContainer"
             app:layout_constraintStart_toEndOf="@+id/borrowedContainer"
@@ -38,8 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amount_borrowed"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/icons" />
+                android:textColor="?attr/colorOnPrimary"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/borrowedLabel"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:gravity="center"
-                android:textColor="@color/icons"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="18sp"
                 tools:text="0.00" />
 
@@ -69,8 +69,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amount_lent"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/icons" />
+                android:textColor="?attr/colorOnPrimary"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
             <TextView
                 android:id="@+id/lentLabel"
@@ -78,7 +78,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:gravity="center"
-                android:textColor="@color/icons"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="18sp"
                 tools:text="0.00" />
         </LinearLayout>
@@ -90,14 +90,13 @@
         app:adSize="SMART_BANNER"
         app:adUnitId="@string/home_adId"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:visibility="gone" />
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/md_grey_100"
         android:orientation="vertical">
 
         <FrameLayout

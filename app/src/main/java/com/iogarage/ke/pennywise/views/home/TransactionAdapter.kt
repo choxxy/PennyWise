@@ -51,7 +51,6 @@ class TransactionAdapter(
         var image: ImageView
         var mCurrency: TextView
         var status: TextView
-        var textSeparator: TextView
         val dragIcon: ImageView
         private val transactionCard: CardView
 
@@ -62,14 +61,12 @@ class TransactionAdapter(
             mCurrency = itemView.findViewById(R.id.txtcurrency)
             image = itemView.findViewById(R.id.imageView)
             status = itemView.findViewById(R.id.status)
-            textSeparator = itemView.findViewById(R.id.header_separator)
             dragIcon = itemView.findViewById(R.id.drag_icon)
             transactionCard = itemView.findViewById(R.id.transaction_card)
             transactionCard.setOnClickListener(this)
         }
 
         override fun onClick(v: View) {
-            if (v.id == R.id.header_separator) return
             val position = adapterPosition
             selected(position)
         }
@@ -104,7 +101,7 @@ class TransactionAdapter(
             viewHolder.mAmount.setTextColor(
                 ContextCompat.getColor(
                     context,
-                    R.color.md_green_500
+                    R.color.md_green_700
                 )
             )
             viewHolder.mAmount.text = transaction.balance.toCurrency()

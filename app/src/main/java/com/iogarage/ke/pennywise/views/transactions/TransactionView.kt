@@ -28,7 +28,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.timepicker.MaterialTimePicker
 import com.iogarage.ke.pennywise.R
 import com.iogarage.ke.pennywise.databinding.FragmentTransactionBinding
 import com.iogarage.ke.pennywise.util.asString
@@ -40,14 +39,12 @@ import java.util.Calendar
 
 @AndroidEntryPoint
 class TransactionView : Fragment() {
-
     private val transactionViewModel: TransactionViewModel by viewModels()
     private lateinit var binding: FragmentTransactionBinding
     private var displayName: String? = null
     private var phoneNumber: String? = null
     private lateinit var mCalendar: Calendar
     private var calendar: Calendar = Calendar.getInstance()
-    private var transactionType = 0
 
     private var localStartDate: LocalDate = LocalDate.now()
     private var localEndDate: LocalDate = LocalDate.now()
@@ -214,15 +211,16 @@ class TransactionView : Fragment() {
     }
 
     private fun save() {
-        transactionViewModel.save()
-        Toast.makeText(
-            requireContext(),
-            "Saved successfully!",
-            Toast.LENGTH_LONG
-        ).show()
-        findNavController().navigateUp()
+        if (transactionViewModel.validInput()) {
+            transactionViewModel.save()
+            Toast.makeText(
+                requireContext(),
+                "Saved successfully!",
+                Toast.LENGTH_LONG
+            ).show()
+            findNavController().navigateUp()
+        }
     }
-
 
     private fun showDatePicker(viewId: Int) {
         val constraintsBuilder =

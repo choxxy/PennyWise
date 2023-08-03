@@ -12,6 +12,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="?attr/colorSecondaryContainer"
     android:gravity="center"
     android:padding="0dp"
     app:cardCornerRadius="4dp"
@@ -26,34 +27,19 @@
         android:orientation="vertical"
         android:padding="0dp">
 
-        <TextView
-            android:id="@+id/header_separator"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:background="@android:color/transparent"
-            android:gravity="center_vertical"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:textColor="@color/textGreyHeader"
-            android:textSize="16sp"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="8dp"
-            android:background="@color/md_white">
+            android:layout_margin="8dp">
 
             <TextView
                 android:id="@+id/txtname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/imageView"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@+id/imageView"
                 android:padding="2dp"
-                android:text="Martin Cooker"
-                android:textColor="@color/primary_text"
+                tools:text="Martin Cooker"
                 android:textSize="@dimen/text_four_teen" />
 
             <TextView
@@ -61,11 +47,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtname"
-                android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/imageView"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@+id/imageView"
                 android:padding="2dp"
-                android:text="Due date: 03 Nov, 2014"
-                android:textColor="@color/secondary_text"
+                tools:text="Due date: 03 Nov, 2014"
                 android:textSize="@dimen/text_twelve" />
 
             <TextView
@@ -93,7 +78,7 @@
                 android:layout_alignParentRight="true"
                 android:padding="2dp"
                 android:text="-100,000.00"
-                android:textColor="@color/md_red_500"
+                android:textColor="@color/md_red_600"
                 android:textSize="@dimen/text_four_teen" />
 
             <TextView

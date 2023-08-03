@@ -4,7 +4,7 @@
     android:id="@+id/loan_payment_list_header"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:background="@color/primary"
+    android:background="?attr/colorPrimary"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="5dp">
@@ -16,8 +16,8 @@
         android:layout_weight="1"
         android:focusable="false"
         android:gravity="center_vertical"
+        android:textColor="?attr/colorOnPrimary"
         android:text="@string/pay_date"
-        android:textColor="@color/md_white"
         android:textSize="@dimen/text_four_teen" />
 
     <TextView
@@ -26,9 +26,9 @@
         android:layout_marginLeft="16dp"
         android:layout_weight="1"
         android:focusable="false"
+        android:textColor="?attr/colorOnPrimary"
         android:gravity="center"
         android:text="@string/pay_desc"
-        android:textColor="@color/md_white"
         android:textSize="@dimen/text_four_teen" />
 
     <TextView
@@ -37,9 +37,9 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:layout_weight="1"
+        android:textColor="?attr/colorOnPrimary"
         android:gravity="end"
         android:text="@string/amount"
-        android:textColor="@color/md_white"
         android:textSize="@dimen/text_four_teen" />
 
 </LinearLayout>

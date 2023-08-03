@@ -33,7 +33,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
-                android:textColor="@color/primary_text"
                 android:textSize="@dimen/large_text"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/loan_details_phone_no_text"
@@ -48,7 +47,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="8dp"
-                android:textColor="@color/secondary_text"
                 android:textSize="@dimen/text_four_teen"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +69,7 @@
 
             <View
                 android:id="@+id/dummy"
+                android:background="?attr/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="0dp" />
 
@@ -83,7 +82,6 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="4dp"
                 android:text="@string/due_date"
-                android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_four_teen" />
 
             <TextView
@@ -94,8 +92,7 @@
                 android:layout_alignParentEnd="true"
                 android:paddingTop="8dp"
                 android:paddingBottom="4dp"
-                android:text="@string/loan_details_place_holder_text"
-                android:textColor="@color/primary_text" />
+                android:text="@string/loan_details_place_holder_text" />
 
 
             <TextView
@@ -116,8 +113,7 @@
                 android:layout_alignParentEnd="true"
                 android:paddingTop="8dp"
                 android:paddingBottom="4dp"
-                android:text="@string/loan_details_place_holder_text"
-                android:textColor="@color/primary_text" />
+                android:text="@string/loan_details_place_holder_text" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -187,7 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/textView9"
-                android:background="@android:color/background_dark" />
+                android:background="?attr/colorPrimary" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -218,7 +214,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?android:attr/dividerVertical" />
+            android:background="?attr/colorPrimary" />
 
 
         <include

@@ -1,9 +1,11 @@
 package com.iogarage.ke.pennywise.views
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -33,7 +35,8 @@ class PennyMain : BaseActivity(),
 
         MobileAds.initialize(this)
 
-        setSupportActionBar(binding.toolBar);
+        //binding.toolBar.setTitleTextColor(ContextCompat.getColorStateList(this,))
+        setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 

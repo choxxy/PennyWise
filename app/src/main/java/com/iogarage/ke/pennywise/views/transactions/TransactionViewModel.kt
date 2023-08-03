@@ -95,7 +95,7 @@ class TransactionViewModel @Inject constructor(
         transactionDto.reminderDate = localTime.toEpochDay()
     }
 
-    private fun validateInput(): Boolean {
+    fun validInput(): Boolean {
         var isValid = true
         _nameError.value = ""
         _transactionTypeError.value = ""
@@ -125,24 +125,22 @@ class TransactionViewModel @Inject constructor(
     }
 
     fun save() {
+
         viewModelScope.launch {
-            if (validateInput()) {
-                if (transactionDto.reminderDate != 0L) {
-                    val defaultAlarmHour = appPreferences.getDefaultAlarmHour()
+            if (transactionDto.reminderDate != 0L) {
+                val defaultAlarmHour = appPreferences.getDefaultAlarmHour()
 
 
-                    transactionDto.alarmId =
-                        setAlarm(
-                            14,
-                            54,
-                            transactionDto.reminderDate.asLocalDate(),
-                            getNotificationMessage()
-                        )
-                }
-                transactionRepository.insertTransaction(transactionDto.toEntity())
+                transactionDto.alarmId =
+                    setAlarm(
+                        14,
+                        54,
+                        transactionDto.reminderDate.asLocalDate(),
+                        getNotificationMessage()
+                    )
             }
+            transactionRepository.insertTransaction(transactionDto.toEntity())
         }
-
     }
 
     private fun getNotificationMessage(): String {
