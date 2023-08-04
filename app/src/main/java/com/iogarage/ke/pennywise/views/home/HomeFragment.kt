@@ -159,11 +159,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         super.onPause()
     }
 
-    override fun onDestroy() {
-        binding.adView.destroy()
-        super.onDestroy()
-    }
-
     private fun setupLayoutBehindItemLayoutOnSwiping(list: DragDropSwipeRecyclerView) {
         // We set certain properties to show an icon and a background colour behind swiped items
         // In XML: app:behind_swiped_item_icon="@drawable/ic_remove_item"

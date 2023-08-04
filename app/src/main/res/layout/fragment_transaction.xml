@@ -111,7 +111,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:inputType="text"
+                            android:inputType="phone"
                             android:text="@={viewModel.transactionDto.phoneNumber}" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -233,7 +233,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:inputType="numberDecimal"
+                            android:inputType="number"
                             android:text="@={Converter.doubleToCurrency(viewModel.transactionDto.amount)}" />
                     </com.google.android.material.textfield.TextInputLayout>
 

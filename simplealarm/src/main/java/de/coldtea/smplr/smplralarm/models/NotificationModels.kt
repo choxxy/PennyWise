@@ -2,10 +2,12 @@ package de.coldtea.smplr.smplralarm.models
 
 import android.content.Intent
 import androidx.annotation.DrawableRes
+import androidx.annotation.Keep
 
 /**
  * Created by [Yasar Naci Gündüz](https://github.com/ColdTea-Projects).
  */
+@Keep
 data class NotificationChannelItem(
     val importance: Int,
     val showBadge: Boolean,
@@ -13,6 +15,7 @@ data class NotificationChannelItem(
     val description: String
 )
 
+@Keep
 data class NotificationItem(
     @DrawableRes
     val smallIcon: Int? = null,
@@ -26,7 +29,7 @@ data class NotificationItem(
     var secondButtonIntent: Intent? = null,
     var notificationDismissedIntent: Intent? = null
 )
-
+@Keep
 internal data class IntentNotificationItem(
     val intent: Intent?,
     val notificationItem: NotificationItem

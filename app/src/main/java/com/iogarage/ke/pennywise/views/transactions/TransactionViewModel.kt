@@ -133,8 +133,8 @@ class TransactionViewModel @Inject constructor(
 
                 transactionDto.alarmId =
                     setAlarm(
-                        14,
-                        54,
+                        8,
+                        0,
                         transactionDto.reminderDate.asLocalDate(),
                         getNotificationMessage()
                     )

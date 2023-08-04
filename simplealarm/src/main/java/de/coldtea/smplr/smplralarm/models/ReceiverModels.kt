@@ -1,6 +1,7 @@
 package de.coldtea.smplr.smplralarm.models
 
 import android.content.Intent
+import androidx.annotation.Keep
 import de.coldtea.smplr.smplralarm.extensions.activeDaysAsJsonString
 import de.coldtea.smplr.smplralarm.repository.entity.AlarmNotificationEntity
 import de.coldtea.smplr.smplralarm.repository.entity.NotificationChannelEntity
@@ -18,7 +19,7 @@ internal class SmplrAlarmReceiverObjects {
         internal var alarmNotification: MutableList<AlarmNotification> = mutableListOf()
     }
 }
-
+@Keep
 data class AlarmNotification(
     val alarmNotificationId: Int,
     val hour: Int,

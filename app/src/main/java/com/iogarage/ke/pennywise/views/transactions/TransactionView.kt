@@ -2,11 +2,16 @@ package com.iogarage.ke.pennywise.views.transactions
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlarmManager
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -16,6 +21,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
@@ -43,6 +51,7 @@ class TransactionView : Fragment() {
     private lateinit var binding: FragmentTransactionBinding
     private var displayName: String? = null
     private var phoneNumber: String? = null
+    private var canSetAlarm: Boolean = false
     private lateinit var mCalendar: Calendar
     private var calendar: Calendar = Calendar.getInstance()
 
@@ -63,6 +72,30 @@ class TransactionView : Fragment() {
             }
         }
 
+    private val permissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Permission denied or forever denied,cannot set alarm",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun canExactAlarmsBeScheduled(): Boolean {
+        val alarmManager =
+            requireContext().getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            alarmManager.canScheduleExactAlarms()
+        } else {
+            true // below API it can always be scheduled
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -80,6 +113,23 @@ class TransactionView : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Set up data binding
+
+        /*if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            canSetAlarm = true
+        } else {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                showDialog()
+            } else {
+                // first request or forever denied case
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+            }
+        }*/
 
         localEndDate = localEndDate.plusMonths(1)
         binding.tvStartDate.text = localStartDate.asString()
@@ -258,9 +308,41 @@ class TransactionView : Fragment() {
         datePicker.show(childFragmentManager, "datePicker")
     }
 
+    private fun showDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setMessage("Notification blocked")
+        alertDialog.setPositiveButton(
+            "Grant Permission"
+        ) { dialog, _ -> // Responds to click on the action
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            val uri: Uri = Uri.fromParts("package", requireContext().packageName, null)
+            intent.data = uri
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        alertDialog.setNegativeButton(
+            "Cancel"
+        ) { dialog, _ -> dialog.dismiss() }
+        alertDialog.create().show()
+    }
+
     override fun onResume() {
         super.onResume()
         binding.adView.resume()
+
+        /*if (!canExactAlarmsBeScheduled()) {
+            AlertDialog.Builder(requireContext())
+                .setMessage(
+                    getString(
+                        R.string.need_permission_to_schedule_alarms,
+                        getString(R.string.app_name)
+                    )
+                ).setPositiveButton(getString(R.string.dialog_ok)) { _: DialogInterface, _: Int ->
+                    val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                    startActivity(intent)
+                }.show()
+        }*/
     }
 
     override fun onDestroy() {
